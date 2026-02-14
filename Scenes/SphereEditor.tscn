@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bpwp1bsmtgxhm"]
+
+[ext_resource type="Script" uid="uid://d0mvinebxdw0s" path="res://Scripts/SphereEditor.cs" id="1_wmc22"]
+[ext_resource type="Texture2D" uid="uid://c73mq5b6uw8jv" path="res://Assets/GUI/bg.png" id="2_u6i2g"]
+[ext_resource type="Script" uid="uid://dbro00cjop231" path="res://Scripts/Camera.cs" id="3_2snk0"]
+[ext_resource type="PackedScene" uid="uid://c8bno8t8u0a8f" path="res://Scenes/SphereBoard.tscn" id="4_2snk0"]
+[ext_resource type="PackedScene" uid="uid://m5bc4m42xlce" path="res://Scenes/Inspector.tscn" id="5_6tfmq"]
+
+[node name="SphereEditor" type="Node2D" unique_id=1068049965]
+script = ExtResource("1_wmc22")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1875305336]
+script = ExtResource("3_2snk0")
+
+[node name="Bg" type="Sprite2D" parent="Camera2D" unique_id=1383737460]
+scale = Vector2(2000, 2000)
+texture = ExtResource("2_u6i2g")
+
+[node name="SphereBoard" parent="." unique_id=535833741 node_paths=PackedStringArray("Spheres") instance=ExtResource("4_2snk0")]
+Spheres = []
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=95423386]
+
+[node name="Inspector" parent="CanvasLayer" unique_id=39234725 instance=ExtResource("5_6tfmq")]
+offset_right = -0.00024414063

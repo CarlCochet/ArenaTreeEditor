@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://fo2upd4qes2w"]
+
+[ext_resource type="Script" uid="uid://drgq5xy1tri4a" path="res://Scripts/Sphere.cs" id="1_ge60g"]
+
+[node name="Sphere" type="Sprite2D" unique_id=756866862]
+script = ExtResource("1_ge60g")

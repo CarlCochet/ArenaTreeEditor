@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://m5bc4m42xlce"]
+
+[ext_resource type="Script" uid="uid://h0ai7b2edxoa" path="res://Scripts/Inspector.cs" id="1_mnv65"]
+
+[node name="Inspector" type="Control" unique_id=39234725]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mnv65")
+
+[node name="Panel" type="Panel" parent="." unique_id=1142835187]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=927977815]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=564033950]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2" unique_id=2108650590]
+layout_mode = 2
+
+[node name="AddNode" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1598188626]
+layout_mode = 2
+text = "Add Node"
+
+[node name="DeleteNode" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1919580587]
+layout_mode = 2
+text = "Delete Node"
+
+[node name="LinkNodes" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1432165218]
+layout_mode = 2
+text = "Link Nodes"
+
+[node name="Effects" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2" unique_id=1634709604]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/Effects" unique_id=875245936]
+layout_mode = 2
+text = "Effects:"
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer2/Effects" unique_id=1881933890]
+layout_mode = 2
+text = "+"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel" unique_id=1946959427]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ResetTree" type="Button" parent="Panel/MarginContainer2" unique_id=980665907]
+layout_mode = 2
+text = "Reset Tree"

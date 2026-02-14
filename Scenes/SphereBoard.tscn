@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c8bno8t8u0a8f"]
+
+[ext_resource type="Script" uid="uid://c5wydhu001i3y" path="res://Scripts/SphereBoard.cs" id="1_g5t1c"]
+
+[node name="SphereBoard" type="Node2D" unique_id=535833741]
+script = ExtResource("1_g5t1c")
