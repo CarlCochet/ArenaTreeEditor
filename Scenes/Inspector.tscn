@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://h0ai7b2edxoa" path="res://Scripts/Inspector.cs" id="1_mnv65"]
 
-[node name="Inspector" type="Control" unique_id=39234725]
+[node name="Inspector" type="Control" unique_id=39234725 node_paths=PackedStringArray("_addNode", "_removeNode", "_linkNodes", "_newTree", "_open", "_save", "_addEffect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +10,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mnv65")
+_addNode = NodePath("Panel/VSplitContainer/MarginContainer/VBoxContainer/Nodes/Add")
+_removeNode = NodePath("Panel/VSplitContainer/MarginContainer/VBoxContainer/Nodes/Remove")
+_linkNodes = NodePath("Panel/VSplitContainer/MarginContainer/VBoxContainer/Nodes/Link")
+_newTree = NodePath("Panel/VSplitContainer/MarginContainer/VBoxContainer/Tree/New")
+_open = NodePath("Panel/VSplitContainer/MarginContainer/VBoxContainer/Tree/Open")
+_save = NodePath("Panel/VSplitContainer/MarginContainer/VBoxContainer/Tree/Save")
+_addEffect = NodePath("Panel/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/AddEffect")
 
 [node name="Panel" type="Panel" parent="." unique_id=1142835187]
 custom_minimum_size = Vector2(300, 0)
@@ -18,62 +25,91 @@ anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=927977815]
+[node name="VSplitContainer" type="VSplitContainer" parent="Panel" unique_id=1597096111]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+dragging_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VSplitContainer" unique_id=1297052849]
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=564033950]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2" unique_id=2108650590]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VSplitContainer/MarginContainer" unique_id=1617860164]
 layout_mode = 2
 
-[node name="AddNode" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1598188626]
+[node name="Tree" type="HBoxContainer" parent="Panel/VSplitContainer/MarginContainer/VBoxContainer" unique_id=1956987682]
 layout_mode = 2
-text = "Add Node"
+alignment = 1
 
-[node name="DeleteNode" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1919580587]
+[node name="New" type="Button" parent="Panel/VSplitContainer/MarginContainer/VBoxContainer/Tree" unique_id=59138280]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-text = "Delete Node"
+text = "New"
 
-[node name="LinkNodes" type="Button" parent="Panel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1432165218]
+[node name="Open" type="Button" parent="Panel/VSplitContainer/MarginContainer/VBoxContainer/Tree" unique_id=1969229351]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-text = "Link Nodes"
+text = "Open"
 
-[node name="Effects" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer2" unique_id=1634709604]
+[node name="Save" type="Button" parent="Panel/VSplitContainer/MarginContainer/VBoxContainer/Tree" unique_id=943832573]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Save"
+
+[node name="Nodes" type="HBoxContainer" parent="Panel/VSplitContainer/MarginContainer/VBoxContainer" unique_id=1271614709]
+layout_mode = 2
+alignment = 1
+
+[node name="Add" type="Button" parent="Panel/VSplitContainer/MarginContainer/VBoxContainer/Nodes" unique_id=1681568084]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Add"
+
+[node name="Remove" type="Button" parent="Panel/VSplitContainer/MarginContainer/VBoxContainer/Nodes" unique_id=858558430]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Remove"
+
+[node name="Link" type="Button" parent="Panel/VSplitContainer/MarginContainer/VBoxContainer/Nodes" unique_id=1765033737]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Link"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VSplitContainer" unique_id=525781930]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/Effects" unique_id=875245936]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VSplitContainer/ScrollContainer" unique_id=1385033037]
 layout_mode = 2
-text = "Effects:"
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
 
-[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer2/Effects" unique_id=1881933890]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VSplitContainer/ScrollContainer/MarginContainer" unique_id=436569791]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=555552181]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1345661821]
+layout_mode = 2
+text = "Links"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1513873163]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=390041134]
+layout_mode = 2
+text = "Effects"
+
+[node name="AddEffect" type="Button" parent="Panel/VSplitContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=422839579]
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 text = "+"
-
-[node name="MarginContainer2" type="MarginContainer" parent="Panel" unique_id=1946959427]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -31.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="ResetTree" type="Button" parent="Panel/MarginContainer2" unique_id=980665907]
-layout_mode = 2
-text = "Reset Tree"

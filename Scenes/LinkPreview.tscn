@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://6ve3slgx4abv"]
+
+[node name="LinkPreview" type="HBoxContainer" unique_id=298205982]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="." unique_id=1100998966]
+custom_minimum_size = Vector2(235, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="." unique_id=1435240223]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "X"
