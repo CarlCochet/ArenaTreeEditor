@@ -8,6 +8,17 @@ public partial class EffectPreview : HBoxContainer
 
     public override void _Ready()
     {
+        _preview.Pressed += _OnPreviewPressed;
+        _delete.Pressed += _OnDeletePressed;
+    }
+    
+    private void _OnPreviewPressed()
+    {
+        
+    }
+
+    private void _OnDeletePressed()
+    {
         
     }
 }

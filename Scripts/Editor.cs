@@ -32,6 +32,6 @@ public partial class Editor : Node2D
             return;
         }
         EffectEditor.Visible = true;
-        EffectEditor.Load(sphereData);
+        EffectEditor.SetData(sphereData);
     }
 }
