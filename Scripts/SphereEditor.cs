@@ -1,18 +1,13 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
-public partial class SphereEditor : Node2D
+public partial class SphereEditor : ScrollContainer
 {
-    private Dictionary<int, SphereBoardData> _data;
-
-    public override void _Ready()
-    {
-        
-    }
-    
-    private void LoadData()
-    {
-        _data = new Dictionary<int, SphereBoardData>();
-    }
+    [Export] private SpinBox _sphereId;
+    [Export] private SpinBox _xpNumber;
+    [Export] private SpinBox _x;
+    [Export] private SpinBox _y;
+    [Export] private VBoxContainer _links;
+    [Export] private VBoxContainer _effects;
+    [Export] private Button _addEffect;
 }

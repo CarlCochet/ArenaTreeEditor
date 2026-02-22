@@ -1,25 +1,85 @@
-[gd_scene format=3 uid="uid://bpwp1bsmtgxhm"]
+[gd_scene format=3 uid="uid://brb8ho214p8ax"]
 
-[ext_resource type="Script" uid="uid://d0mvinebxdw0s" path="res://Scripts/SphereEditor.cs" id="1_wmc22"]
-[ext_resource type="Texture2D" uid="uid://c73mq5b6uw8jv" path="res://Assets/GUI/bg.png" id="2_u6i2g"]
-[ext_resource type="Script" uid="uid://dbro00cjop231" path="res://Scripts/Camera.cs" id="3_2snk0"]
-[ext_resource type="PackedScene" uid="uid://c8bno8t8u0a8f" path="res://Scenes/SphereBoard.tscn" id="4_2snk0"]
-[ext_resource type="PackedScene" uid="uid://m5bc4m42xlce" path="res://Scenes/Inspector.tscn" id="5_6tfmq"]
+[ext_resource type="Script" uid="uid://cwgl6kp67l8ih" path="res://Scripts/SphereEditor.cs" id="1_wmc22"]
 
-[node name="SphereEditor" type="Node2D" unique_id=1068049965]
+[node name="SphereEditor" type="ScrollContainer" unique_id=1842821781 node_paths=PackedStringArray("_sphereId", "_xpNumber", "_x", "_y", "_links", "_effects", "_addEffect")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_wmc22")
+_sphereId = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Id")
+_xpNumber = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Xp")
+_x = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/X")
+_y = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Y")
+_links = NodePath("MarginContainer/VBoxContainer/Links")
+_effects = NodePath("MarginContainer/VBoxContainer/Effects")
+_addEffect = NodePath("MarginContainer/VBoxContainer/Effects/AddEffect")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1875305336]
-script = ExtResource("3_2snk0")
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1779890148]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
 
-[node name="Bg" type="Sprite2D" parent="Camera2D" unique_id=1383737460]
-scale = Vector2(2000, 2000)
-texture = ExtResource("2_u6i2g")
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=561245584]
+layout_mode = 2
 
-[node name="SphereBoard" parent="." unique_id=535833741 node_paths=PackedStringArray("Spheres") instance=ExtResource("4_2snk0")]
-Spheres = []
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1314131449]
+layout_mode = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=95423386]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=542980376]
+layout_mode = 2
+text = "Id"
 
-[node name="Inspector" parent="CanvasLayer" unique_id=39234725 instance=ExtResource("5_6tfmq")]
-offset_right = -0.00024414063
+[node name="Id" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=142251369]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=533659621]
+layout_mode = 2
+text = "Xp"
+
+[node name="Xp" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=11451606]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1962502135]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1409561258]
+layout_mode = 2
+text = "X"
+
+[node name="X" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=653014099]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1653789583]
+layout_mode = 2
+text = "Y"
+
+[node name="Y" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1470837259]
+layout_mode = 2
+alignment = 1
+
+[node name="Links" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=967267428]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Links" unique_id=1395856328]
+layout_mode = 2
+text = "Links"
+
+[node name="Effects" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1698214640]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Effects" unique_id=956190465]
+layout_mode = 2
+text = "Effects"
+
+[node name="AddEffect" type="Button" parent="MarginContainer/VBoxContainer/Effects" unique_id=1854008904]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"

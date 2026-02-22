@@ -10,6 +10,8 @@ public partial class SphereBoard : Node2D
     private bool _buildGraph;
     private HashSet<(Sphere, Sphere)> _connectedSpheres;
 
+    public event EventHandler<SphereData> OnSphereSelected;
+
     public override void _Process(double delta)
     {
         if (!Engine.IsEditorHint())

@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://b0dbjxx5mcnlq"]
+
+[ext_resource type="Script" uid="uid://54xktwf78yf8" path="res://Scripts/EffectEditor.cs" id="1_07rxj"]
+
+[node name="EffectEditor" type="Control" unique_id=1263539688 node_paths=PackedStringArray("_actionId", "_areaShape", "_triggerSelf", "_addParam", "_params", "_addTriggerBefore", "_triggersBefore", "_addTriggerAfter", "_triggersAfter", "_addEndTrigger", "_endTriggers", "_addServerTrigger", "_serverTriggers", "_areaSizeMin", "_areaSizeMax", "_duration", "_targets", "_addTarget", "_triggeredWithDuration")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_07rxj")
+_actionId = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionId")
+_areaShape = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/AreaShape")
+_triggerSelf = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/TriggerSelf")
+_addParam = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters/AddParameter")
+_params = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters")
+_addTriggerBefore = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore/AddTriggerBefore")
+_triggersBefore = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore")
+_addTriggerAfter = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter/AddTriggerAfter")
+_triggersAfter = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter")
+_addEndTrigger = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers/AddEndTrigger")
+_endTriggers = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers")
+_addServerTrigger = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers/AddServerTrigger")
+_serverTriggers = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers")
+_areaSizeMin = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize/Min")
+_areaSizeMax = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize/Max")
+_duration = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Duration")
+_targets = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets")
+_addTarget = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets/AddTarget")
+_triggeredWithDuration = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/TriggerDuration")
+
+[node name="Panel" type="Panel" parent="." unique_id=2105024912]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=66382305]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/ScrollContainer" unique_id=894799265]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer" unique_id=808775579]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1103052000]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2056630239]
+layout_mode = 2
+text = "ActionId"
+
+[node name="ActionId" type="SpinBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1029530145]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=859122658]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1560054647]
+layout_mode = 2
+text = "Area Shape"
+
+[node name="AreaShape" type="OptionButton" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1186504343]
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "null"
+popup/item_0/id = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=500974576]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=788746230]
+layout_mode = 2
+text = "Trigger Self"
+
+[node name="TriggerSelf" type="CheckBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1663674543]
+layout_mode = 2
+
+[node name="Parameters" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=136986487]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters" unique_id=444711825]
+layout_mode = 2
+text = "Parameters"
+
+[node name="AddParameter" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters" unique_id=227323801]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"
+
+[node name="TriggersBefore" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2439825]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore" unique_id=1177360520]
+layout_mode = 2
+text = "Trigger Before"
+
+[node name="AddTriggerBefore" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore" unique_id=43193085]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"
+
+[node name="TriggersAfter" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2128691813]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter" unique_id=1330451283]
+layout_mode = 2
+text = "Trigger After"
+
+[node name="AddTriggerAfter" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter" unique_id=1167214619]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"
+
+[node name="EndTriggers" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=453541713]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers" unique_id=562538705]
+layout_mode = 2
+text = "End Trigger"
+
+[node name="AddEndTrigger" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers" unique_id=1757145222]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"
+
+[node name="ServerTriggers" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1437795719]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers" unique_id=319329767]
+layout_mode = 2
+text = "Server Trigger"
+
+[node name="AddServerTrigger" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers" unique_id=481240022]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"
+
+[node name="AreaSize" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1555573209]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize" unique_id=799583454]
+layout_mode = 2
+text = "Area Size"
+
+[node name="Min" type="SpinBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize" unique_id=1900065672]
+layout_mode = 2
+
+[node name="Max" type="SpinBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize" unique_id=256117319]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1072044602]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1443740888]
+layout_mode = 2
+text = "Duration"
+
+[node name="Duration" type="SpinBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1657655600]
+layout_mode = 2
+max_value = 63.0
+
+[node name="Targets" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=809472614]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets" unique_id=272823199]
+layout_mode = 2
+text = "Targets"
+
+[node name="AddTarget" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets" unique_id=363563127]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=190100798]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=1903238549]
+layout_mode = 2
+text = "Trigger Duration"
+
+[node name="TriggerDuration" type="CheckBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6" unique_id=1035034443]
+layout_mode = 2

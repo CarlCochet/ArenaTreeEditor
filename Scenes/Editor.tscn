@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bpwp1bsmtgxhm"]
+
+[ext_resource type="Script" uid="uid://d0mvinebxdw0s" path="res://Scripts/Editor.cs" id="1_5v8xv"]
+[ext_resource type="Script" uid="uid://dbro00cjop231" path="res://Scripts/Camera.cs" id="2_brgpd"]
+[ext_resource type="Texture2D" uid="uid://c73mq5b6uw8jv" path="res://Assets/GUI/bg.png" id="3_qexec"]
+[ext_resource type="PackedScene" uid="uid://c8bno8t8u0a8f" path="res://Scenes/SphereBoard.tscn" id="4_847jc"]
+[ext_resource type="PackedScene" uid="uid://m5bc4m42xlce" path="res://Scenes/Inspector.tscn" id="5_ir51w"]
+[ext_resource type="PackedScene" uid="uid://b0dbjxx5mcnlq" path="res://Scenes/EffectEditor.tscn" id="6_fx05v"]
+
+[node name="Editor" type="Node2D" unique_id=1068049965 node_paths=PackedStringArray("Inspector", "EffectEditor", "SphereBoard", "Camera")]
+script = ExtResource("1_5v8xv")
+Inspector = NodePath("CanvasLayer/HBoxContainer/Inspector")
+EffectEditor = NodePath("CanvasLayer/HBoxContainer/EffectEditor")
+SphereBoard = NodePath("SphereBoard")
+Camera = NodePath("Camera")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1875305336]
+script = ExtResource("2_brgpd")
+
+[node name="Bg" type="Sprite2D" parent="Camera" unique_id=1383737460]
+scale = Vector2(2000, 2000)
+texture = ExtResource("3_qexec")
+
+[node name="SphereBoard" parent="." unique_id=535833741 node_paths=PackedStringArray("Spheres") instance=ExtResource("4_847jc")]
+Spheres = []
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=95423386]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1136136444]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Inspector" parent="CanvasLayer/HBoxContainer" unique_id=39234725 instance=ExtResource("5_ir51w")]
+layout_mode = 2
+
+[node name="EffectEditor" parent="CanvasLayer/HBoxContainer" unique_id=1263539688 instance=ExtResource("6_fx05v")]
+layout_mode = 2

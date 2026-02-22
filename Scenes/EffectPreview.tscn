@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ca8c6xm65ulog"]
+
+[ext_resource type="Script" uid="uid://bjwhojvp2l7n7" path="res://Scripts/EffectPreview.cs" id="1_ivrl7"]
+
+[node name="EffectPreview" type="HBoxContainer" unique_id=1541730110 node_paths=PackedStringArray("_preview", "_delete")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ivrl7")
+_preview = NodePath("Preview")
+_delete = NodePath("Delete")
+
+[node name="Preview" type="Button" parent="." unique_id=1373166432]
+custom_minimum_size = Vector2(235, 0)
+layout_mode = 2
+
+[node name="Delete" type="Button" parent="." unique_id=1398386580]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "X"
