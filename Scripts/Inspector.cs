@@ -3,8 +3,8 @@ using System;
 
 public partial class Inspector : Control
 {
-    [Export] private SphereBoardEditor _sphereBoardEditor;
-    [Export] private SphereEditor _sphereEditor;
+    [Export] public SphereBoardEditor SphereBoardEditor;
+    [Export] public SphereEditor SphereEditor;
 
     public override void _Ready()
     {

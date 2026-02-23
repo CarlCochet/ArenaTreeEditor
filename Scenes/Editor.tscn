@@ -7,12 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://m5bc4m42xlce" path="res://Scenes/Inspector.tscn" id="5_ir51w"]
 [ext_resource type="PackedScene" uid="uid://b0dbjxx5mcnlq" path="res://Scenes/EffectEditor.tscn" id="6_fx05v"]
 
-[node name="Editor" type="Node2D" unique_id=1068049965 node_paths=PackedStringArray("Inspector", "EffectEditor", "SphereBoard", "Camera")]
+[node name="Editor" type="Node2D" unique_id=1068049965 node_paths=PackedStringArray("Inspector", "EffectEditor", "SphereBoard", "Camera", "_openDialog", "_saveDialog")]
 script = ExtResource("1_5v8xv")
 Inspector = NodePath("CanvasLayer/HBoxContainer/Inspector")
 EffectEditor = NodePath("CanvasLayer/HBoxContainer/EffectEditor")
 SphereBoard = NodePath("SphereBoard")
 Camera = NodePath("Camera")
+_openDialog = NodePath("CanvasLayer/OpenDialog")
+_saveDialog = NodePath("CanvasLayer/SaveDialog")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1875305336]
 script = ExtResource("2_brgpd")
@@ -39,3 +41,20 @@ layout_mode = 2
 
 [node name="EffectEditor" parent="CanvasLayer/HBoxContainer" unique_id=1263539688 instance=ExtResource("6_fx05v")]
 layout_mode = 2
+
+[node name="OpenDialog" type="FileDialog" parent="CanvasLayer" unique_id=626364244]
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 2
+file_mode = 2
+display_mode = 1
+access = 2
+filters = PackedStringArray("*.json")
+use_native_dialog = true
+
+[node name="SaveDialog" type="FileDialog" parent="CanvasLayer" unique_id=810925780]
+oversampling_override = 1.0
+initial_position = 2
+display_mode = 1
+access = 2
+use_native_dialog = true

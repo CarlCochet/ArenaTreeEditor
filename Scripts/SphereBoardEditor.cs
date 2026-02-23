@@ -15,6 +15,13 @@ public partial class SphereBoardEditor : MarginContainer
     [Export] private SpinBox _x;
     [Export] private SpinBox _y;
     [Export] private Array<OptionButton> _startingSpells;
+    
+    public event EventHandler NewPressed;
+    public event EventHandler OpenPressed;
+    public event EventHandler SavePressed;
+    public event EventHandler AddPressed;
+    public event EventHandler RemovePressed;
+    public event EventHandler LinkPressed;
 
     public override void _Ready()
     {
@@ -32,32 +39,32 @@ public partial class SphereBoardEditor : MarginContainer
     
     private void _OnNewPressed()
     {
-        
+        NewPressed?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnOpenPressed()
     {
-        
+        OpenPressed?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnSavePressed()
     {
-        
+        SavePressed?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddPressed()
     {
-        
+        AddPressed?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnRemovePressed()
     {
-        
+        RemovePressed?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnLinkPressed()
     {
-        
+        LinkPressed?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnSphereBoardIdChanged()
