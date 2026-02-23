@@ -5,6 +5,9 @@ public partial class EffectPreview : HBoxContainer
 {
     [Export] private Button _preview;
     [Export] private Button _delete;
+    
+    public event EventHandler PreviewPressed;
+    public event EventHandler DeletePressed;
 
     public override void _Ready()
     {
@@ -14,11 +17,11 @@ public partial class EffectPreview : HBoxContainer
     
     private void _OnPreviewPressed()
     {
-        
+        PreviewPressed?.Invoke(this, EventArgs.Empty);
     }
 
     private void _OnDeletePressed()
     {
-        
+        DeletePressed?.Invoke(this, EventArgs.Empty);
     }
 }

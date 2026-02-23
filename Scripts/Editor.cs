@@ -46,10 +46,7 @@ public partial class Editor : Node2D
             return;
         }
 
-        var options = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        };
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         var sphereList = JsonSerializer.Deserialize<List<SphereData>>(File.ReadAllText(spheresPath), options) ?? [];
         var sphereBoardList = JsonSerializer.Deserialize<List<SphereBoardData>>(File.ReadAllText(sphereBoardsPath), options) ?? [];
@@ -65,6 +62,22 @@ public partial class Editor : Node2D
         {
             _sphereBoardData[board.Id] = board;
         }
+    }
+
+    private void SaveData(string path)
+    {
+        Directory.CreateDirectory(path);
+
+        var spheresPath = Path.Combine(path, "spheres.json");
+        var sphereBoardsPath = Path.Combine(path, "sphere_boards.json");
+
+        var options = new JsonSerializerOptions { WriteIndented = true };
+
+        var sphereList = _sphereData != null ? new List<SphereData>(_sphereData.Values) : [];
+        var sphereBoardList = _sphereBoardData != null ? new List<SphereBoardData>(_sphereBoardData.Values) : [];
+
+        File.WriteAllText(spheresPath, JsonSerializer.Serialize(sphereList, options));
+        File.WriteAllText(sphereBoardsPath, JsonSerializer.Serialize(sphereBoardList, options));
     }
 
     private void CreateSphereBoard(object sender, EventArgs e)
