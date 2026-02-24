@@ -22,6 +22,11 @@ public partial class SphereBoardEditor : MarginContainer
     public event EventHandler AddPressed;
     public event EventHandler RemovePressed;
     public event EventHandler LinkPressed;
+    public event EventHandler<int> SphereBoardIdSelected;
+    public event EventHandler<int> BreedSelected;
+    public event EventHandler<int> XChanged;
+    public event EventHandler<int> YChanged;
+    public event EventHandler<(int index, int id)> StartingSpellSelected;
 
     public override void _Ready()
     {
@@ -35,6 +40,12 @@ public partial class SphereBoardEditor : MarginContainer
         _breed.ItemSelected += _OnBreedSelected;
         _x.Changed += _OnXChanged;
         _y.Changed += _OnYChanged;
+
+        for (var i = 0; i < _startingSpells.Count; i++)
+        {
+            var index = i;
+            _startingSpells[index].ItemSelected += id => _OnStartingSpellSelected(index, id);
+        }
     }
     
     private void _OnNewPressed()
@@ -67,23 +78,28 @@ public partial class SphereBoardEditor : MarginContainer
         LinkPressed?.Invoke(this, EventArgs.Empty);
     }
     
-    private void _OnSphereBoardIdSelected(long index)
+    private void _OnSphereBoardIdSelected(long id)
     {
-        
+        SphereBoardIdSelected?.Invoke(this, (int)id);
     }
     
-    private void _OnBreedSelected(long index)
+    private void _OnBreedSelected(long id)
     {
-        
+        BreedSelected?.Invoke(this, (int)id);
     }
     
     private void _OnXChanged()
     {
-        
+        XChanged?.Invoke(this, (int)_x.Value);
     }
     
     private void _OnYChanged()
     {
-        
+        YChanged?.Invoke(this, (int)_y.Value);
+    }
+
+    private void _OnStartingSpellSelected(int index, long id)
+    {
+        StartingSpellSelected?.Invoke(this, (index, (int)id));
     }
 }

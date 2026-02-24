@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://ca8c6xm65ulog"]
 
-[ext_resource type="Script" uid="uid://bjwhojvp2l7n7" path="res://Scripts/EffectPreview.cs" id="1_ivrl7"]
+[ext_resource type="Script" uid="uid://bjwhojvp2l7n7" path="res://Scripts/ComponentPreview.cs" id="1_dsg3j"]
 
-[node name="EffectPreview" type="HBoxContainer" unique_id=1541730110 node_paths=PackedStringArray("_preview", "_delete")]
+[node name="ComponentPreview" type="HBoxContainer" unique_id=1541730110 node_paths=PackedStringArray("_preview", "_delete")]
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_ivrl7")
+script = ExtResource("1_dsg3j")
 _preview = NodePath("Preview")
 _delete = NodePath("Delete")
 

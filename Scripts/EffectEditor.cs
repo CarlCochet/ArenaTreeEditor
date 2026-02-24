@@ -22,6 +22,7 @@ public partial class EffectEditor : Control
     [Export] private VBoxContainer _targets;
     [Export] private Button _addTarget;
     [Export] private CheckBox _triggeredWithDuration;
+    [Export] private PackedScene _componentPreviewScene;
     
     public override void _Ready()
     {

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://brb8ho214p8ax"]
 
 [ext_resource type="Script" uid="uid://cwgl6kp67l8ih" path="res://Scripts/SphereEditor.cs" id="1_wmc22"]
+[ext_resource type="PackedScene" uid="uid://ca8c6xm65ulog" path="res://Scenes/ComponentPreview.tscn" id="2_u6i2g"]
 
 [node name="SphereEditor" type="ScrollContainer" unique_id=1842821781 node_paths=PackedStringArray("_xpNumber", "_type", "_x", "_y", "_spells", "_addSpell", "_fighterCards", "_addFighterCard", "_links", "_effects", "_addEffect")]
 anchors_preset = 15
@@ -20,6 +21,7 @@ _addFighterCard = NodePath("MarginContainer/VBoxContainer/FighterCards/AddFighte
 _links = NodePath("MarginContainer/VBoxContainer/Links")
 _effects = NodePath("MarginContainer/VBoxContainer/Effects")
 _addEffect = NodePath("MarginContainer/VBoxContainer/Effects/AddEffect")
+_componentPreviewScene = ExtResource("2_u6i2g")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1779890148]
 layout_mode = 2

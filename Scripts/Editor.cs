@@ -17,6 +17,7 @@ public partial class Editor : Node2D
     private Dictionary<int, SphereBoardData> _sphereBoardData;
     private Dictionary<int, SphereData> _sphereData;
     private Dictionary<int, SpellData> _spellData;
+    private Dictionary<int, FighterCardData> _fighterCardsData;
     
     private readonly JsonSerializerOptions _jsonOptions = new()
     {
@@ -41,21 +42,54 @@ public partial class Editor : Node2D
         LoadSpells();
     }
 
-    private void LoadSpells()
+    private void LoadFighterCards()
     {
-        const string spellsPath = "res://Data/spell_cards.json";
-
-        if (!FileAccess.FileExists(spellsPath))
+        const string path = "res://Data/fighter_cards.json";
+        
+        if (!FileAccess.FileExists(path))
         {
-            GD.PrintErr($"Missing spell data file: {spellsPath}");
-            _spellData = new Dictionary<int, SpellData>();
+            GD.PrintErr($"Missing fighter cards data file: {path}");
+            _fighterCardsData = new Dictionary<int, FighterCardData>();
+            return;
+        }
+        
+        var json = FileAccess.GetFileAsString(path);
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            GD.PrintErr($"Fighter cards data file is empty: {path}");
+            _fighterCardsData = new Dictionary<int, FighterCardData>();
             return;
         }
 
-        var json = FileAccess.GetFileAsString(spellsPath);
-        if (string.IsNullOrWhiteSpace(json))
+        var fighterCardsList = JsonSerializer.Deserialize<List<FighterCardData>>(json, _jsonOptions) ?? [];
+
+        _fighterCardsData = new Dictionary<int, FighterCardData>();
+        foreach (var fighterCardData in fighterCardsList)
         {
-            GD.PrintErr($"Spell data file is empty: {spellsPath}");
+            _fighterCardsData[fighterCardData.Id] = fighterCardData;
+        }
+
+        GD.Print($"Loaded {_fighterCardsData.Count} fighter cards.");
+    }
+
+    private void LoadSpells()
+    {
+        const string path = "res://Data/spell_cards.json";
+        
+
+        if (!FileAccess.FileExists(path))
+        {
+            GD.PrintErr($"Missing spell data file: {path}");
+            _spellData = new Dictionary<int, SpellData>();
+            _fighterCardsData = new Dictionary<int, FighterCardData>();
+            return;
+        }
+
+        var json = FileAccess.GetFileAsString(path);
+        var fighterCardsJson = FileAccess.GetFileAsString(path);
+        if (string.IsNullOrWhiteSpace(json) || string.IsNullOrWhiteSpace(fighterCardsJson))
+        {
+            GD.PrintErr($"Spell data file is empty: {path}");
             _spellData = new Dictionary<int, SpellData>();
             return;
         }
