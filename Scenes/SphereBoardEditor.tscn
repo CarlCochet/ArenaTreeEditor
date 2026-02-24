@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dd1xoa2u76ko" path="res://Scripts/SphereBoardEditor.cs" id="1_spqpa"]
 
-[node name="SphereBoardEditor" type="MarginContainer" unique_id=82511200 node_paths=PackedStringArray("_new", "_open", "_save", "_add", "_remove", "_link", "_sphereBoardId", "_breedId", "_x", "_y", "_startingSpells")]
+[node name="SphereBoardEditor" type="MarginContainer" unique_id=82511200 node_paths=PackedStringArray("_new", "_open", "_save", "_add", "_remove", "_link", "_sphereBoardId", "_breed", "_x", "_y", "_startingSpells")]
 offset_right = 298.0
 offset_bottom = 288.0
 theme_override_constants/margin_left = 10
@@ -17,7 +17,7 @@ _add = NodePath("VBoxContainer/Nodes/Add")
 _remove = NodePath("VBoxContainer/Nodes/Remove")
 _link = NodePath("VBoxContainer/Nodes/Link")
 _sphereBoardId = NodePath("VBoxContainer/HBoxContainer/Id")
-_breedId = NodePath("VBoxContainer/HBoxContainer/BreedId")
+_breed = NodePath("VBoxContainer/HBoxContainer/Breed")
 _x = NodePath("VBoxContainer/HBoxContainer2/X")
 _y = NodePath("VBoxContainer/HBoxContainer2/Y")
 _startingSpells = [NodePath("VBoxContainer/Spell1"), NodePath("VBoxContainer/Spell2"), NodePath("VBoxContainer/Spell3")]
@@ -70,17 +70,17 @@ layout_mode = 2
 layout_mode = 2
 text = "Id"
 
-[node name="Id" type="SpinBox" parent="VBoxContainer/HBoxContainer" unique_id=55437449]
+[node name="Id" type="OptionButton" parent="VBoxContainer/HBoxContainer" unique_id=1916340877]
 layout_mode = 2
-alignment = 1
+item_count = 1
+popup/item_0/id = 0
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1624235790]
 layout_mode = 2
-text = "BreedId"
+text = "Breed"
 
-[node name="BreedId" type="SpinBox" parent="VBoxContainer/HBoxContainer" unique_id=30175788]
+[node name="Breed" type="OptionButton" parent="VBoxContainer/HBoxContainer" unique_id=959084130]
 layout_mode = 2
-alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=376286674]
 layout_mode = 2
@@ -103,25 +103,13 @@ alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1777946935]
 layout_mode = 2
-text = "Starting spells:"
+text = "Starting Spells:"
 
 [node name="Spell1" type="OptionButton" parent="VBoxContainer" unique_id=1348938068]
 layout_mode = 2
-selected = 0
-item_count = 1
-popup/item_0/text = "null"
-popup/item_0/id = 0
 
 [node name="Spell2" type="OptionButton" parent="VBoxContainer" unique_id=716607916]
 layout_mode = 2
-selected = 0
-item_count = 1
-popup/item_0/text = "null"
-popup/item_0/id = 0
 
 [node name="Spell3" type="OptionButton" parent="VBoxContainer" unique_id=445912346]
 layout_mode = 2
-selected = 0
-item_count = 1
-popup/item_0/text = "null"
-popup/item_0/id = 0

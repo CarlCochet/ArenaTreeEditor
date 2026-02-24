@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cu6s6g0s27gli" path="res://Scenes/SphereBoardEditor.tscn" id="2_ubnha"]
 [ext_resource type="PackedScene" uid="uid://brb8ho214p8ax" path="res://Scenes/SphereEditor.tscn" id="3_0vlrn"]
 
-[node name="Inspector" type="Control" unique_id=39234725 node_paths=PackedStringArray("_sphereBoardEditor", "_sphereEditor")]
+[node name="Inspector" type="Control" unique_id=39234725]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -13,8 +13,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mnv65")
-_sphereBoardEditor = NodePath("Panel/VSplitContainer/SphereBoard")
-_sphereEditor = NodePath("Panel/VSplitContainer/SelectedSphere")
 
 [node name="Panel" type="Panel" parent="." unique_id=1142835187]
 custom_minimum_size = Vector2(300, 0)

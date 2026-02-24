@@ -162,4 +162,34 @@ public class Enums
         ResistantToFireDamage = 1L << 61,
         EffectArea = 1L << 62
     }
+
+    public enum Breeds
+    {
+        Feca = 1,
+        Osamodas = 2,
+        Enutrof = 3,
+        Sram = 4,
+        Xelor = 5,
+        Ecaflip = 6,
+        Eniripsa = 7,
+        Iop = 8,
+        Cra = 9,
+        Sadida = 10,
+        Sacrieur = 11,
+        Pandawa = 12,
+        Roublard = 13,
+        Zobal = 14,
+        Steamer = 15,
+        Eliotrope = 16,
+        Huppermage = 17,
+        Ouginak = 18,
+        Forgelance = 19,
+    }
+
+    public enum SphereType
+    {
+        Minor = 0,
+        Major = 1,
+        Key = 2,
+    }
 }

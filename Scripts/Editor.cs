@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using FileAccess = Godot.FileAccess;
 
 public partial class Editor : Node2D
 {
@@ -15,6 +16,13 @@ public partial class Editor : Node2D
     
     private Dictionary<int, SphereBoardData> _sphereBoardData;
     private Dictionary<int, SphereData> _sphereData;
+    private Dictionary<int, SpellData> _spellData;
+    
+    private readonly JsonSerializerOptions _jsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true,
+        WriteIndented = true
+    };
 
     public override void _Ready()
     {
@@ -30,7 +38,37 @@ public partial class Editor : Node2D
         Inspector.SphereBoardEditor.RemovePressed += RemoveSphere;
         Inspector.SphereBoardEditor.LinkPressed += LinkSpheres;
         
-        
+        LoadSpells();
+    }
+
+    private void LoadSpells()
+    {
+        const string spellsPath = "res://Data/spell_cards.json";
+
+        if (!FileAccess.FileExists(spellsPath))
+        {
+            GD.PrintErr($"Missing spell data file: {spellsPath}");
+            _spellData = new Dictionary<int, SpellData>();
+            return;
+        }
+
+        var json = FileAccess.GetFileAsString(spellsPath);
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            GD.PrintErr($"Spell data file is empty: {spellsPath}");
+            _spellData = new Dictionary<int, SpellData>();
+            return;
+        }
+
+        var spellList = JsonSerializer.Deserialize<List<SpellData>>(json, _jsonOptions) ?? [];
+
+        _spellData = new Dictionary<int, SpellData>();
+        foreach (var spell in spellList)
+        {
+            _spellData[spell.Id] = spell;
+        }
+
+        GD.Print($"Loaded {_spellData.Count} spells.");
     }
     
     private void LoadData(string path)
@@ -46,10 +84,8 @@ public partial class Editor : Node2D
             return;
         }
 
-        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
-        var sphereList = JsonSerializer.Deserialize<List<SphereData>>(File.ReadAllText(spheresPath), options) ?? [];
-        var sphereBoardList = JsonSerializer.Deserialize<List<SphereBoardData>>(File.ReadAllText(sphereBoardsPath), options) ?? [];
+        var sphereList = JsonSerializer.Deserialize<List<SphereData>>(File.ReadAllText(spheresPath), _jsonOptions) ?? [];
+        var sphereBoardList = JsonSerializer.Deserialize<List<SphereBoardData>>(File.ReadAllText(sphereBoardsPath), _jsonOptions) ?? [];
 
         _sphereData = new Dictionary<int, SphereData>();
         foreach (var sphere in sphereList)
@@ -62,6 +98,8 @@ public partial class Editor : Node2D
         {
             _sphereBoardData[board.Id] = board;
         }
+        
+        GD.Print($"Loaded {_sphereData.Count} spheres and {_sphereBoardData.Count} sphere boards.");
     }
 
     private void SaveData(string path)
@@ -71,13 +109,13 @@ public partial class Editor : Node2D
         var spheresPath = Path.Combine(path, "spheres.json");
         var sphereBoardsPath = Path.Combine(path, "sphere_boards.json");
 
-        var options = new JsonSerializerOptions { WriteIndented = true };
-
         var sphereList = _sphereData != null ? new List<SphereData>(_sphereData.Values) : [];
         var sphereBoardList = _sphereBoardData != null ? new List<SphereBoardData>(_sphereBoardData.Values) : [];
 
-        File.WriteAllText(spheresPath, JsonSerializer.Serialize(sphereList, options));
-        File.WriteAllText(sphereBoardsPath, JsonSerializer.Serialize(sphereBoardList, options));
+        File.WriteAllText(spheresPath, JsonSerializer.Serialize(sphereList, _jsonOptions));
+        File.WriteAllText(sphereBoardsPath, JsonSerializer.Serialize(sphereBoardList, _jsonOptions));
+        
+        GD.Print("Saved data.");
     }
 
     private void CreateSphereBoard(object sender, EventArgs e)

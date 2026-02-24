@@ -13,6 +13,7 @@ public class SphereData
     [JsonPropertyName("fighterCardListId")] public int FighterCardListId { get; set; }
     [JsonPropertyName("yposition")] public int YPosition { get; set; }
     [JsonPropertyName("xposition")] public int XPosition { get; set; }
+    [JsonPropertyName("type")] public int Type { get; set; }
     [JsonPropertyName("linkedSpheres")] public List<int> LinkedSpheres { get; set; } = [];
 
     public class EffectData

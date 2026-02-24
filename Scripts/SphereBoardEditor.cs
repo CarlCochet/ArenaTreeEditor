@@ -10,8 +10,8 @@ public partial class SphereBoardEditor : MarginContainer
     [Export] private Button _add;
     [Export] private Button _remove;
     [Export] private Button _link;
-    [Export] private SpinBox _sphereBoardId;
-    [Export] private SpinBox _breedId;
+    [Export] private OptionButton _sphereBoardId;
+    [Export] private OptionButton _breed;
     [Export] private SpinBox _x;
     [Export] private SpinBox _y;
     [Export] private Array<OptionButton> _startingSpells;
@@ -31,8 +31,8 @@ public partial class SphereBoardEditor : MarginContainer
         _add.Pressed += _OnAddPressed;
         _remove.Pressed += _OnRemovePressed;
         _link.Pressed += _OnLinkPressed;
-        _sphereBoardId.Changed += _OnSphereBoardIdChanged;
-        _breedId.Changed += _OnBreedIdChanged;
+        _sphereBoardId.ItemSelected += _OnSphereBoardIdSelected;
+        _breed.ItemSelected += _OnBreedSelected;
         _x.Changed += _OnXChanged;
         _y.Changed += _OnYChanged;
     }
@@ -67,12 +67,12 @@ public partial class SphereBoardEditor : MarginContainer
         LinkPressed?.Invoke(this, EventArgs.Empty);
     }
     
-    private void _OnSphereBoardIdChanged()
+    private void _OnSphereBoardIdSelected(long index)
     {
         
     }
     
-    private void _OnBreedIdChanged()
+    private void _OnBreedSelected(long index)
     {
         
     }

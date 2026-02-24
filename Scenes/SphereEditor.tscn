@@ -2,17 +2,21 @@
 
 [ext_resource type="Script" uid="uid://cwgl6kp67l8ih" path="res://Scripts/SphereEditor.cs" id="1_wmc22"]
 
-[node name="SphereEditor" type="ScrollContainer" unique_id=1842821781 node_paths=PackedStringArray("_sphereId", "_xpNumber", "_x", "_y", "_links", "_effects", "_addEffect")]
+[node name="SphereEditor" type="ScrollContainer" unique_id=1842821781 node_paths=PackedStringArray("_xpNumber", "_type", "_x", "_y", "_spells", "_addSpell", "_fighterCards", "_addFighterCard", "_links", "_effects", "_addEffect")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wmc22")
-_sphereId = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Id")
 _xpNumber = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Xp")
+_type = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Type")
 _x = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/X")
 _y = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Y")
+_spells = NodePath("MarginContainer/VBoxContainer/Spells")
+_addSpell = NodePath("MarginContainer/VBoxContainer/Spells/AddSpell")
+_fighterCards = NodePath("MarginContainer/VBoxContainer/FighterCards")
+_addFighterCard = NodePath("MarginContainer/VBoxContainer/FighterCards/AddFighterCard")
 _links = NodePath("MarginContainer/VBoxContainer/Links")
 _effects = NodePath("MarginContainer/VBoxContainer/Effects")
 _addEffect = NodePath("MarginContainer/VBoxContainer/Effects/AddEffect")
@@ -30,14 +34,6 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1314131449]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=542980376]
-layout_mode = 2
-text = "Id"
-
-[node name="Id" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=142251369]
-layout_mode = 2
-alignment = 1
-
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=533659621]
 layout_mode = 2
 text = "Xp"
@@ -45,6 +41,13 @@ text = "Xp"
 [node name="Xp" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=11451606]
 layout_mode = 2
 alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=962222431]
+layout_mode = 2
+text = "Type"
+
+[node name="Type" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1642901970]
+layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1962502135]
 layout_mode = 2
@@ -71,6 +74,30 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Links" unique_id=1395856328]
 layout_mode = 2
 text = "Links"
+
+[node name="Spells" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=987295817]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Spells" unique_id=352980152]
+layout_mode = 2
+text = "Spells"
+
+[node name="AddSpell" type="Button" parent="MarginContainer/VBoxContainer/Spells" unique_id=1764203581]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"
+
+[node name="FighterCards" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=914734459]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/FighterCards" unique_id=1878475527]
+layout_mode = 2
+text = "Fighter Cards"
+
+[node name="AddFighterCard" type="Button" parent="MarginContainer/VBoxContainer/FighterCards" unique_id=336022089]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"
 
 [node name="Effects" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1698214640]
 layout_mode = 2
