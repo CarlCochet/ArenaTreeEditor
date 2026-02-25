@@ -3,7 +3,7 @@ using System;
 
 public partial class EffectEditor : Control
 {
-    [Export] private SpinBox _actionId;
+    [Export] private OptionButton _action;
     [Export] private OptionButton _areaShape;
     [Export] private CheckBox _triggerSelf;
     [Export] private Button _addParam;
@@ -24,109 +24,104 @@ public partial class EffectEditor : Control
     [Export] private CheckBox _triggeredWithDuration;
     [Export] private PackedScene _componentPreviewScene;
     
+    public event EventHandler<int> ActionSelected;
+    public event EventHandler<int> AreaShapeSelected;
+    public event EventHandler<bool> TriggerSelfToggled;
+    public event EventHandler ParamAdded;
+    public event EventHandler TriggerBeforeAdded;
+    public event EventHandler TriggerAfterAdded;
+    public event EventHandler EndTriggerAdded;
+    public event EventHandler ServerTriggerAdded;
+    public event EventHandler<int> AreaSizeMinChanged;
+    public event EventHandler<int> AreaSizeMaxChanged;
+    public event EventHandler<int> DurationChanged;
+    public event EventHandler TargetAdded;
+    public event EventHandler<bool> TriggeredWithDurationChanged;
+    
     public override void _Ready()
     {
-        _actionId.ValueChanged += _OnActionIdChanged;
-        
+        _action.ItemSelected += _OnActionSelected;
+        _areaShape.ItemSelected += _OnAreaShapeSelected;
+        _triggerSelf.Toggled += _OnTriggerSelfToggled;
+        _addParam.Pressed += _OnAddParamPressed;
+        _addTriggerBefore.Pressed += _OnAddTriggerBeforePressed;
+        _addTriggerAfter.Pressed += _OnAddTriggerAfterPressed;
+        _addEndTrigger.Pressed += _OnAddEndTriggerPressed;
+        _addServerTrigger.Pressed += _OnAddServerTriggerPressed;
+        _areaSizeMin.ValueChanged += _OnAreaSizeMinChanged;
+        _areaSizeMax.ValueChanged += _OnAreaSizeMaxChanged;
+        _duration.ValueChanged += _OnDurationChanged;
+        _addTarget.Pressed += _OnAddTargetPressed;
+        _triggeredWithDuration.Toggled += _OnTriggeredWithDurationChanged;
     }
 
-    public void SetData(SphereData sphereData)
+    public void SetData(EffectData effectData)
     {
-        
+        _action.Select(_action.GetItemIndex(effectData.ActionId));
     }
     
-    private void _OnActionIdChanged(double value)
+    private void _OnActionSelected(long id)
     {
-        
+        ActionSelected?.Invoke(this, (int)id);
     }
     
-    private void _OnAreaShapeChanged(double value)
+    private void _OnAreaShapeSelected(long id)
     {
-        
+        AreaShapeSelected?.Invoke(this, (int)id);   
     }
     
-    private void _OnTriggerSelfChanged(bool value)
+    private void _OnTriggerSelfToggled(bool value)
     {
-        
+        TriggerSelfToggled?.Invoke(this, value);  
     }
     
     private void _OnAddTargetPressed()
     {
-        
+        TargetAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddParamPressed()
     {
-        
+        ParamAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddTriggerBeforePressed()
     {
-        
+        TriggerBeforeAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddTriggerAfterPressed()
     {
-        
+        TriggerAfterAdded?.Invoke(this, EventArgs.Empty);  
     }
     
     private void _OnAddEndTriggerPressed()
     {
-        
+        EndTriggerAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddServerTriggerPressed()
     {
-        
+        ServerTriggerAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnTriggeredWithDurationChanged(bool value)
     {
-        
+        TriggeredWithDurationChanged?.Invoke(this, value); 
     }
     
     private void _OnAreaSizeMinChanged(double value)
     {
-        
+        AreaSizeMinChanged?.Invoke(this, (int)value);
     }
     
     private void _OnAreaSizeMaxChanged(double value)
     {
-        
+        AreaSizeMaxChanged?.Invoke(this, (int)value);
     }
     
     private void _OnDurationChanged(double value)
     {
-        
-    }
-    
-    private void _OnTargetChanged(int value)
-    {
-        
-    }
-    
-    private void _OnParamChanged(double value)
-    {
-        
-    }
-    
-    private void _OnTriggerBeforeChanged(int value)
-    {
-        
-    }
-    
-    private void _OnTriggerAfterChanged(int value)
-    {
-        
-    }
-    
-    private void _OnEndTriggerChanged(int value)
-    {
-        
-    }
-    
-    private void _OnServerTriggerChanged(int value)
-    {
-        
+        DurationChanged?.Invoke(this, (int)value);
     }
 }

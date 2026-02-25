@@ -174,12 +174,6 @@ public partial class Editor : Node2D
 
     private void _OnSphereSelected(object sender, SphereData sphereData)
     {
-        if (sphereData == null)
-        {
-            EffectEditor.Visible = false;
-            return;
-        }
-        EffectEditor.Visible = true;
-        EffectEditor.SetData(sphereData);
+        
     }
 }
