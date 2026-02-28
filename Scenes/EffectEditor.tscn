@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://54xktwf78yf8" path="res://Scripts/EffectEditor.cs" id="1_07rxj"]
 [ext_resource type="PackedScene" uid="uid://ca8c6xm65ulog" path="res://Scenes/ComponentPreview.tscn" id="2_j3g2g"]
 
-[node name="EffectEditor" type="Control" unique_id=1263539688 node_paths=PackedStringArray("_actionId", "_areaShape", "_triggerSelf", "_addParam", "_params", "_addTriggerBefore", "_triggersBefore", "_addTriggerAfter", "_triggersAfter", "_addEndTrigger", "_endTriggers", "_addServerTrigger", "_serverTriggers", "_areaSizeMin", "_areaSizeMax", "_duration", "_targets", "_addTarget", "_triggeredWithDuration")]
+[node name="EffectEditor" type="Control" unique_id=1263539688 node_paths=PackedStringArray("_action", "_areaShape", "_triggerSelf", "_addParam", "_params", "_addTriggerBefore", "_triggersBefore", "_addTriggerAfter", "_triggersAfter", "_addEndTrigger", "_endTriggers", "_addServerTrigger", "_serverTriggers", "_areaSizeMin", "_areaSizeMax", "_duration", "_targets", "_addTarget", "_triggeredWithDuration")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -12,7 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_07rxj")
-_actionId = NodePath("")
+_action = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Action")
 _areaShape = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/AreaShape")
 _triggerSelf = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/TriggerSelf")
 _addParam = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters/AddParameter")

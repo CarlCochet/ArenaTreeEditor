@@ -58,6 +58,18 @@ public partial class EffectEditor : Control
     public void SetData(EffectData effectData)
     {
         _action.Select(_action.GetItemIndex(effectData.ActionId));
+        _areaShape.Select(_areaShape.GetItemIndex(effectData.AreaShape));
+        _triggerSelf.SetPressed(effectData.TargetTriggerSelf);
+        _areaSizeMin.Value = effectData.AreaSize.Count > 0 ? effectData.AreaSize[0] : 0;
+        _areaSizeMax.Value = effectData.AreaSize.Count > 1 ? effectData.AreaSize[1] : 0;
+        _duration.Value = effectData.Duration.Count > 0 ? effectData.Duration[0] : 0;
+        _triggeredWithDuration.SetPressed(effectData.TriggeredWithDuration);
+
+        foreach (var param in effectData.Params)
+        {
+            var componentPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
+            
+        }
     }
     
     private void _OnActionSelected(long id)

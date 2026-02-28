@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cxpxolg2ox4h4"]
+
+[ext_resource type="Script" uid="uid://dxnpott5e0m72" path="res://Scripts/ComponentPreviewList.cs" id="1_k0ahe"]
+[ext_resource type="PackedScene" uid="uid://ca8c6xm65ulog" path="res://Scenes/ComponentPreview.tscn" id="2_pqg72"]
+
+[node name="ComponentPreviewList" type="VBoxContainer" unique_id=2053861285 node_paths=PackedStringArray("_label", "_add")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_k0ahe")
+_label = NodePath("Label")
+_add = NodePath("Add")
+_componentPreviewScene = ExtResource("2_pqg72")
+
+[node name="Label" type="Label" parent="." unique_id=1288487294]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="." unique_id=1780024074]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+text = "+"

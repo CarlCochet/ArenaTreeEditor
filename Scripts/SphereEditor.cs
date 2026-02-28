@@ -32,7 +32,6 @@ public partial class SphereEditor : ScrollContainer
     public event EventHandler<int> LinkDeleted;
     public event EventHandler<int> EffectDeleted;
     
-    
     public override void _Ready()
     {
         _xpNumber.ValueChanged += _OnXpNumberChanged;
@@ -43,10 +42,15 @@ public partial class SphereEditor : ScrollContainer
         _addFighterCard.Pressed += _OnAddFighterCardPressed;
         _addEffect.Pressed += _OnAddEffectPressed;
     }
-
-    public void AddLink(int index)
+    
+    public void AddLink(SphereData sphereData)
     {
-        
+        var linkPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
+        linkPreview.SetLinkData(sphereData);
+        linkPreview.Index = _links.GetChildCount() - 1;
+        linkPreview.PreviewPressed += _OnLinkPressed;
+        linkPreview.DeletePressed += _OnLinkDeleted;
+        _links.AddChild(linkPreview);
     }
     
     private void _OnXpNumberChanged(double value)
