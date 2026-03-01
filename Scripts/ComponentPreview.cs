@@ -16,7 +16,7 @@ public partial class ComponentPreview : HBoxContainer
     public event EventHandler<(int index, FighterCardData fighterCard)> FighterCardDataChanged;
     public event EventHandler<(int index, Enums.TriggerType trigger)> TriggerDataChanged;
     public event EventHandler<(int index, Enums.TargetType target)> TargetDataChanged;
-    public event EventHandler<(int index, int value)> ValueChanged;
+    public event EventHandler<(int index, double value)> ValueChanged;
 
     public override void _Ready()
     {
@@ -71,7 +71,7 @@ public partial class ComponentPreview : HBoxContainer
         AddChild(_optionButtonPreview);
     }
 
-    public void SetValue(int value)
+    public void SetValue(double value)
     {
         _spinBoxPreview = new SpinBox();
         _spinBoxPreview.Value = value;

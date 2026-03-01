@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://54xktwf78yf8" path="res://Scripts/EffectEditor.cs" id="1_07rxj"]
 [ext_resource type="PackedScene" uid="uid://ca8c6xm65ulog" path="res://Scenes/ComponentPreview.tscn" id="2_j3g2g"]
+[ext_resource type="PackedScene" uid="uid://cxpxolg2ox4h4" path="res://Scenes/ComponentPreviewList.tscn" id="3_pggfq"]
 
 [node name="EffectEditor" type="Control" unique_id=1263539688 node_paths=PackedStringArray("_action", "_areaShape", "_triggerSelf", "_addParam", "_params", "_addTriggerBefore", "_triggersBefore", "_addTriggerAfter", "_triggersAfter", "_addEndTrigger", "_endTriggers", "_addServerTrigger", "_serverTriggers", "_areaSizeMin", "_areaSizeMax", "_duration", "_targets", "_addTarget", "_triggeredWithDuration")]
 custom_minimum_size = Vector2(300, 0)
@@ -15,21 +16,21 @@ script = ExtResource("1_07rxj")
 _action = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Action")
 _areaShape = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/AreaShape")
 _triggerSelf = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/TriggerSelf")
-_addParam = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters/AddParameter")
-_params = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters")
-_addTriggerBefore = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore/AddTriggerBefore")
-_triggersBefore = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore")
-_addTriggerAfter = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter/AddTriggerAfter")
-_triggersAfter = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter")
-_addEndTrigger = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers/AddEndTrigger")
-_endTriggers = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers")
-_addServerTrigger = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers/AddServerTrigger")
-_serverTriggers = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers")
+_addParam = NodePath("")
+_params = NodePath("")
+_addTriggerBefore = NodePath("")
+_triggersBefore = NodePath("")
+_addTriggerAfter = NodePath("")
+_triggersAfter = NodePath("")
+_addEndTrigger = NodePath("")
+_endTriggers = NodePath("")
+_addServerTrigger = NodePath("")
+_serverTriggers = NodePath("")
 _areaSizeMin = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize/Min")
 _areaSizeMax = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize/Max")
 _duration = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Duration")
-_targets = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets")
-_addTarget = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets/AddTarget")
+_targets = NodePath("")
+_addTarget = NodePath("")
 _triggeredWithDuration = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/TriggerDuration")
 _componentPreviewScene = ExtResource("2_j3g2g")
 
@@ -90,65 +91,20 @@ text = "Trigger Self"
 [node name="TriggerSelf" type="CheckBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1663674543]
 layout_mode = 2
 
-[node name="Parameters" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=136986487]
+[node name="Parameters" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2053861285 instance=ExtResource("3_pggfq")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters" unique_id=444711825]
-layout_mode = 2
-text = "Parameters"
-
-[node name="AddParameter" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters" unique_id=227323801]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"
-
-[node name="TriggersBefore" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2439825]
+[node name="TriggersBefore" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=846063632 instance=ExtResource("3_pggfq")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore" unique_id=1177360520]
-layout_mode = 2
-text = "Trigger Before"
-
-[node name="AddTriggerBefore" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore" unique_id=43193085]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"
-
-[node name="TriggersAfter" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2128691813]
+[node name="TriggersAfter" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1391190366 instance=ExtResource("3_pggfq")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter" unique_id=1330451283]
-layout_mode = 2
-text = "Trigger After"
-
-[node name="AddTriggerAfter" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter" unique_id=1167214619]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"
-
-[node name="EndTriggers" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=453541713]
+[node name="EndTriggers" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1794780799 instance=ExtResource("3_pggfq")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers" unique_id=562538705]
+[node name="ServerTriggers" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1142584951 instance=ExtResource("3_pggfq")]
 layout_mode = 2
-text = "End Trigger"
-
-[node name="AddEndTrigger" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers" unique_id=1757145222]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"
-
-[node name="ServerTriggers" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1437795719]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers" unique_id=319329767]
-layout_mode = 2
-text = "Server Trigger"
-
-[node name="AddServerTrigger" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers" unique_id=481240022]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"
 
 [node name="AreaSize" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1555573209]
 layout_mode = 2
@@ -174,17 +130,8 @@ text = "Duration"
 layout_mode = 2
 max_value = 63.0
 
-[node name="Targets" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=809472614]
+[node name="Targets" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=592500239 instance=ExtResource("3_pggfq")]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets" unique_id=272823199]
-layout_mode = 2
-text = "Targets"
-
-[node name="AddTarget" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets" unique_id=363563127]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=190100798]
 layout_mode = 2

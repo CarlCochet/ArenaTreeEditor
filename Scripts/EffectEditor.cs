@@ -6,21 +6,15 @@ public partial class EffectEditor : Control
     [Export] private OptionButton _action;
     [Export] private OptionButton _areaShape;
     [Export] private CheckBox _triggerSelf;
-    [Export] private Button _addParam;
-    [Export] private VBoxContainer _params;
-    [Export] private Button _addTriggerBefore;
-    [Export] private VBoxContainer _triggersBefore;
-    [Export] private Button _addTriggerAfter;
-    [Export] private VBoxContainer _triggersAfter;
-    [Export] private Button _addEndTrigger;
-    [Export] private VBoxContainer _endTriggers;
-    [Export] private Button _addServerTrigger;
-    [Export] private VBoxContainer _serverTriggers;
+    [Export] private ComponentPreviewList _params;
+    [Export] private ComponentPreviewList _triggersBefore;
+    [Export] private ComponentPreviewList _triggersAfter;
+    [Export] private ComponentPreviewList _endTriggers;
+    [Export] private ComponentPreviewList _serverTriggers;
     [Export] private SpinBox _areaSizeMin;
     [Export] private SpinBox _areaSizeMax;
     [Export] private SpinBox _duration;
-    [Export] private VBoxContainer _targets;
-    [Export] private Button _addTarget;
+    [Export] private ComponentPreviewList _targets;
     [Export] private CheckBox _triggeredWithDuration;
     [Export] private PackedScene _componentPreviewScene;
     
@@ -52,18 +46,25 @@ public partial class EffectEditor : Control
     
     public override void _Ready()
     {
+        _params.SetTitle("Parameters");
+        _triggersBefore.SetTitle("Triggers Before");
+        _triggersAfter.SetTitle("Triggers After");
+        _endTriggers.SetTitle("End Triggers");
+        _serverTriggers.SetTitle("Server Triggers");
+        _targets.SetTitle("Targets");
+        
         _action.ItemSelected += _OnActionSelected;
         _areaShape.ItemSelected += _OnAreaShapeSelected;
         _triggerSelf.Toggled += _OnTriggerSelfToggled;
-        _addParam.Pressed += _OnAddParamPressed;
-        _addTriggerBefore.Pressed += _OnAddTriggerBeforePressed;
-        _addTriggerAfter.Pressed += _OnAddTriggerAfterPressed;
-        _addEndTrigger.Pressed += _OnAddEndTriggerPressed;
-        _addServerTrigger.Pressed += _OnAddServerTriggerPressed;
+        _params.AddPressed += _OnAddParamPressed;
+        _triggersBefore.AddPressed += _OnAddTriggerBeforePressed;
+        _triggersAfter.AddPressed += _OnAddTriggerAfterPressed;
+        _endTriggers.AddPressed += _OnAddEndTriggerPressed;
+        _serverTriggers.AddPressed += _OnAddServerTriggerPressed;
         _areaSizeMin.ValueChanged += _OnAreaSizeMinChanged;
         _areaSizeMax.ValueChanged += _OnAreaSizeMaxChanged;
         _duration.ValueChanged += _OnDurationChanged;
-        _addTarget.Pressed += _OnAddTargetPressed;
+        _targets.AddPressed += _OnAddTargetPressed;
         _triggeredWithDuration.Toggled += _OnTriggeredWithDurationChanged;
     }
 
@@ -77,11 +78,8 @@ public partial class EffectEditor : Control
         _duration.Value = effectData.Duration.Count > 0 ? effectData.Duration[0] : 0;
         _triggeredWithDuration.SetPressed(effectData.TriggeredWithDuration);
 
-        foreach (var param in effectData.Params)
-        {
-            var componentPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
-            
-        }
+        _params.SetValue(effectData.Params);
+        _triggersBefore.SetTriggerData(effectData.TriggersBefore);
     }
     
     private void _OnActionSelected(long id)
@@ -99,69 +97,33 @@ public partial class EffectEditor : Control
         TriggerSelfToggled?.Invoke(this, value);  
     }
     
-    private void _OnAddTargetPressed()
+    private void _OnAddTargetPressed(object sender, EventArgs eventArgs)
     {
-        var targetPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
-        targetPreview.SetTargetData(Enums.TargetType.Always);
-        targetPreview.Index = _targets.GetChildCount() - 1;
-        targetPreview.TargetDataChanged += _OnTargetChanged;
-        targetPreview.DeletePressed += _OnTargetDeleted;
-        _targets.AddChild(targetPreview);
         TargetAdded?.Invoke(this, EventArgs.Empty);
     }
     
-    private void _OnAddParamPressed()
+    private void _OnAddParamPressed(object sender, EventArgs eventArgs)
     {
-        var paramPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
-        paramPreview.SetValue(0);
-        paramPreview.Index = _params.GetChildCount() - 1;
-        paramPreview.ValueChanged += _OnParamChanged;
-        paramPreview.DeletePressed += _OnParamDeleted;
-        _params.AddChild(paramPreview);
         ParamAdded?.Invoke(this, EventArgs.Empty);
     }
     
-    private void _OnAddTriggerBeforePressed()
+    private void _OnAddTriggerBeforePressed(object sender, EventArgs eventArgs)
     {
-        var triggerPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
-        triggerPreview.SetTriggerData(Enums.TriggerType.None);
-        triggerPreview.Index = _triggersBefore.GetChildCount() - 1;
-        triggerPreview.TriggerDataChanged += _OnTriggerBeforeChanged;
-        triggerPreview.DeletePressed += _OnTriggerBeforeDeleted;
-        _triggersBefore.AddChild(triggerPreview);
         TriggerBeforeAdded?.Invoke(this, EventArgs.Empty);
     }
     
-    private void _OnAddTriggerAfterPressed()
+    private void _OnAddTriggerAfterPressed(object sender, EventArgs eventArgs)
     {
-        var triggerPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
-        triggerPreview.SetTriggerData(Enums.TriggerType.None);
-        triggerPreview.Index = _triggersAfter.GetChildCount() - 1;
-        triggerPreview.TriggerDataChanged += _OnTriggerAfterChanged;
-        triggerPreview.DeletePressed += _OnTriggerAfterDeleted;
-        _triggersAfter.AddChild(triggerPreview);
         TriggerAfterAdded?.Invoke(this, EventArgs.Empty);  
     }
     
-    private void _OnAddEndTriggerPressed()
+    private void _OnAddEndTriggerPressed(object sender, EventArgs eventArgs)
     {
-        var triggerPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
-        triggerPreview.SetTriggerData(Enums.TriggerType.None);
-        triggerPreview.Index = _endTriggers.GetChildCount() - 1;
-        triggerPreview.TriggerDataChanged += _OnEndTriggerChanged;
-        triggerPreview.DeletePressed += _OnEndTriggerDeleted;
-        _endTriggers.AddChild(triggerPreview);
         EndTriggerAdded?.Invoke(this, EventArgs.Empty);
     }
     
-    private void _OnAddServerTriggerPressed()
+    private void _OnAddServerTriggerPressed(object sender, EventArgs eventArgs)
     {
-        var triggerPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
-        triggerPreview.SetTriggerData(Enums.TriggerType.None);
-        triggerPreview.Index = _serverTriggers.GetChildCount() - 1;
-        triggerPreview.TriggerDataChanged += _OnServerTriggerChanged;
-        triggerPreview.DeletePressed += _OnServerTriggerDeleted;
-        _serverTriggers.AddChild(triggerPreview);
         ServerTriggerAdded?.Invoke(this, EventArgs.Empty);
     }
     

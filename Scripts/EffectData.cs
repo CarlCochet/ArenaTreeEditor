@@ -17,13 +17,13 @@ public class EffectData
     [JsonPropertyName("singleTarget")] public bool SingleTarget { get; set; }
     [JsonPropertyName("critical")] public bool Critical { get; set; }
     [JsonPropertyName("params")] public List<double> Params { get; set; } = [];
-    [JsonPropertyName("triggersBefore")] public List<int> TriggersBefore { get; set; } = [];
-    [JsonPropertyName("triggersAfter")] public List<int> TriggersAfter { get; set; } = [];
-    [JsonPropertyName("endTriggers")] public List<int> EndTriggers { get; set; } = [];
-    [JsonPropertyName("serverSideTriggers")] public List<int> ServerSideTriggers { get; set; } = [];
+    [JsonPropertyName("triggersBefore")] public List<Enums.TriggerType> TriggersBefore { get; set; } = [];
+    [JsonPropertyName("triggersAfter")] public List<Enums.TriggerType> TriggersAfter { get; set; } = [];
+    [JsonPropertyName("endTriggers")] public List<Enums.TriggerType> EndTriggers { get; set; } = [];
+    [JsonPropertyName("serverSideTriggers")] public List<Enums.TriggerType> ServerSideTriggers { get; set; } = [];
     [JsonPropertyName("areaSize")] public List<int> AreaSize { get; set; } = [];
     [JsonPropertyName("duration")] public List<int> Duration { get; set; } = [];
-    [JsonPropertyName("targets")] public List<int> Targets { get; set; } = [];
+    [JsonPropertyName("targets")] public List<Enums.TargetType> Targets { get; set; } = [];
     [JsonPropertyName("triggeredWithDuration")] public bool TriggeredWithDuration { get; set; }
     [JsonPropertyName("appliedIfTargetValid")] public bool AppliedIfTargetValid { get; set; }
 }
