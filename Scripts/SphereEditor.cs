@@ -75,35 +75,35 @@ public partial class SphereEditor : ScrollContainer
     
     private void _OnAddSpellPressed()
     {
-        SpellAdded?.Invoke(this, EventArgs.Empty);
         var spellPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
         spellPreview.SetSpellData(new SpellData());
         spellPreview.Index = _spells.GetChildCount() - 1;
         spellPreview.PreviewPressed += _OnSpellPressed;
         spellPreview.DeletePressed += _OnSpellDeleted;
         _spells.AddChild(spellPreview);
+        SpellAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddFighterCardPressed()
     {
-        FighterCardAdded?.Invoke(this, EventArgs.Empty);
         var cardPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
         cardPreview.SetFighterCardData(new FighterCardData());
         cardPreview.Index = _fighterCards.GetChildCount() - 1;
         cardPreview.PreviewPressed += _OnFighterCardPressed;
         cardPreview.DeletePressed += _OnFighterCardDeleted;
         _fighterCards.AddChild(cardPreview);
+        FighterCardAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddEffectPressed()
     {
-        EffectAdded?.Invoke(this, EventArgs.Empty);
         var effectPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
         effectPreview.SetEffectData(new EffectData());
         effectPreview.Index = _effects.GetChildCount() - 1;
         effectPreview.PreviewPressed += _OnEffectPressed;
         effectPreview.DeletePressed += _OnEffectDeleted;
         _effects.AddChild(effectPreview);
+        EffectAdded?.Invoke(this, EventArgs.Empty);
     }
 
     private void _OnSpellPressed(object sender, int index)

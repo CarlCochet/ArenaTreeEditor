@@ -12,11 +12,11 @@ public partial class ComponentPreview : HBoxContainer
     
     public event EventHandler<int> PreviewPressed;
     public event EventHandler<int> DeletePressed;
-    public event EventHandler<SpellData> SpellDataChanged;
-    public event EventHandler<FighterCardData> FighterCardDataChanged;
-    public event EventHandler<Enums.TriggerType> TriggerDataChanged;
-    public event EventHandler<Enums.TargetType> TargetDataChanged;
-    public event EventHandler<int> ValueChanged;
+    public event EventHandler<(int index, SpellData spell)> SpellDataChanged;
+    public event EventHandler<(int index, FighterCardData fighterCard)> FighterCardDataChanged;
+    public event EventHandler<(int index, Enums.TriggerType trigger)> TriggerDataChanged;
+    public event EventHandler<(int index, Enums.TargetType target)> TargetDataChanged;
+    public event EventHandler<(int index, int value)> ValueChanged;
 
     public override void _Ready()
     {
@@ -27,7 +27,7 @@ public partial class ComponentPreview : HBoxContainer
     {
         _optionButtonPreview = new OptionButton();
         _optionButtonPreview.ItemSelected += newSpellData
-            => SpellDataChanged?.Invoke(this, GlobalData.Instance.SpellData[(int)newSpellData]);
+            => SpellDataChanged?.Invoke(this, (Index, GlobalData.Instance.SpellData[(int)newSpellData]));
         AddChild(_optionButtonPreview);
     }
     
@@ -51,7 +51,7 @@ public partial class ComponentPreview : HBoxContainer
     {
         _optionButtonPreview = new OptionButton();
         _optionButtonPreview.ItemSelected += newFighterCardData
-            => FighterCardDataChanged?.Invoke(this, GlobalData.Instance.FighterCardsData[(int)newFighterCardData]);
+            => FighterCardDataChanged?.Invoke(this, (Index, GlobalData.Instance.FighterCardsData[(int)newFighterCardData]));
         AddChild(_optionButtonPreview);
     }
 
@@ -59,7 +59,7 @@ public partial class ComponentPreview : HBoxContainer
     {
         _optionButtonPreview = new OptionButton();
         _optionButtonPreview.ItemSelected += newTriggerType
-            => TriggerDataChanged?.Invoke(this, (Enums.TriggerType)newTriggerType);
+            => TriggerDataChanged?.Invoke(this, (Index, (Enums.TriggerType)newTriggerType));
         AddChild(_optionButtonPreview);
     }
 
@@ -67,7 +67,7 @@ public partial class ComponentPreview : HBoxContainer
     {
         _optionButtonPreview = new OptionButton();
         _optionButtonPreview.ItemSelected += newTargetType
-            => TargetDataChanged?.Invoke(this, (Enums.TargetType)newTargetType);
+            => TargetDataChanged?.Invoke(this, (Index, (Enums.TargetType)newTargetType));
         AddChild(_optionButtonPreview);
     }
 
@@ -76,7 +76,7 @@ public partial class ComponentPreview : HBoxContainer
         _spinBoxPreview = new SpinBox();
         _spinBoxPreview.Value = value;
         _spinBoxPreview.ValueChanged += newValue
-            => ValueChanged?.Invoke(this, (int)newValue);
+            => ValueChanged?.Invoke(this, (Index, (int)newValue));
         AddChild(_spinBoxPreview);
     }
     
@@ -92,6 +92,6 @@ public partial class ComponentPreview : HBoxContainer
     
     private void _OnValueChanged()
     {
-        ValueChanged?.Invoke(this, (int)_spinBoxPreview.Value);
+        ValueChanged?.Invoke(this, (Index, (int)_spinBoxPreview.Value));
     }
 }

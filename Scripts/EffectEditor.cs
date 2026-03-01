@@ -32,6 +32,18 @@ public partial class EffectEditor : Control
     public event EventHandler TriggerAfterAdded;
     public event EventHandler EndTriggerAdded;
     public event EventHandler ServerTriggerAdded;
+    public event EventHandler<(int index, int value)> ParamChanged;
+    public event EventHandler<(int index, Enums.TargetType target)> TargetChanged;
+    public event EventHandler<(int index, Enums.TriggerType trigger)> TriggerBeforeChanged;
+    public event EventHandler<(int index, Enums.TriggerType trigger)> TriggerAfterChanged;
+    public event EventHandler<(int index, Enums.TriggerType trigger)> EndTriggerChanged;
+    public event EventHandler<(int index, Enums.TriggerType trigger)> ServerTriggerChanged;
+    public event EventHandler<int> ParamDeleted;
+    public event EventHandler<int> TargetDeleted;
+    public event EventHandler<int> TriggerBeforeDeleted;
+    public event EventHandler<int> TriggerAfterDeleted;
+    public event EventHandler<int> EndTriggerDeleted;
+    public event EventHandler<int> ServerTriggerDeleted;
     public event EventHandler<int> AreaSizeMinChanged;
     public event EventHandler<int> AreaSizeMaxChanged;
     public event EventHandler<int> DurationChanged;
@@ -89,31 +101,67 @@ public partial class EffectEditor : Control
     
     private void _OnAddTargetPressed()
     {
+        var targetPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
+        targetPreview.SetTargetData(Enums.TargetType.Always);
+        targetPreview.Index = _targets.GetChildCount() - 1;
+        targetPreview.TargetDataChanged += _OnTargetChanged;
+        targetPreview.DeletePressed += _OnTargetDeleted;
+        _targets.AddChild(targetPreview);
         TargetAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddParamPressed()
     {
+        var paramPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
+        paramPreview.SetValue(0);
+        paramPreview.Index = _params.GetChildCount() - 1;
+        paramPreview.ValueChanged += _OnParamChanged;
+        paramPreview.DeletePressed += _OnParamDeleted;
+        _params.AddChild(paramPreview);
         ParamAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddTriggerBeforePressed()
     {
+        var triggerPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
+        triggerPreview.SetTriggerData(Enums.TriggerType.None);
+        triggerPreview.Index = _triggersBefore.GetChildCount() - 1;
+        triggerPreview.TriggerDataChanged += _OnTriggerBeforeChanged;
+        triggerPreview.DeletePressed += _OnTriggerBeforeDeleted;
+        _triggersBefore.AddChild(triggerPreview);
         TriggerBeforeAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddTriggerAfterPressed()
     {
+        var triggerPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
+        triggerPreview.SetTriggerData(Enums.TriggerType.None);
+        triggerPreview.Index = _triggersAfter.GetChildCount() - 1;
+        triggerPreview.TriggerDataChanged += _OnTriggerAfterChanged;
+        triggerPreview.DeletePressed += _OnTriggerAfterDeleted;
+        _triggersAfter.AddChild(triggerPreview);
         TriggerAfterAdded?.Invoke(this, EventArgs.Empty);  
     }
     
     private void _OnAddEndTriggerPressed()
     {
+        var triggerPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
+        triggerPreview.SetTriggerData(Enums.TriggerType.None);
+        triggerPreview.Index = _endTriggers.GetChildCount() - 1;
+        triggerPreview.TriggerDataChanged += _OnEndTriggerChanged;
+        triggerPreview.DeletePressed += _OnEndTriggerDeleted;
+        _endTriggers.AddChild(triggerPreview);
         EndTriggerAdded?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnAddServerTriggerPressed()
     {
+        var triggerPreview = _componentPreviewScene.Instantiate<ComponentPreview>();
+        triggerPreview.SetTriggerData(Enums.TriggerType.None);
+        triggerPreview.Index = _serverTriggers.GetChildCount() - 1;
+        triggerPreview.TriggerDataChanged += _OnServerTriggerChanged;
+        triggerPreview.DeletePressed += _OnServerTriggerDeleted;
+        _serverTriggers.AddChild(triggerPreview);
         ServerTriggerAdded?.Invoke(this, EventArgs.Empty);
     }
     
@@ -135,5 +183,65 @@ public partial class EffectEditor : Control
     private void _OnDurationChanged(double value)
     {
         DurationChanged?.Invoke(this, (int)value);
+    }
+
+    private void _OnTargetChanged(object sender, (int index, Enums.TargetType targetType) args)
+    {
+        
+    }
+
+    private void _OnTargetDeleted(object sender, int index)
+    {
+        
+    }
+    
+    private void _OnParamChanged(object sender, (int index, int value) args)
+    {
+        
+    }
+    
+    private void _OnParamDeleted(object sender, int index)
+    {
+        
+    }
+    
+    private void _OnTriggerBeforeChanged(object sender, (int index, Enums.TriggerType triggerType) args)
+    {
+        
+    }
+    
+    private void _OnTriggerBeforeDeleted(object sender, int index)
+    {
+        
+    }
+    
+    private void _OnTriggerAfterChanged(object sender, (int index, Enums.TriggerType triggerType) args)
+    {
+        
+    }
+    
+    private void _OnTriggerAfterDeleted(object sender, int index)
+    {
+        
+    }
+    
+    private void _OnEndTriggerChanged(object sender, (int index, Enums.TriggerType triggerType) args)
+    {
+        
+    }
+    
+    private void _OnEndTriggerDeleted(object sender, int index)
+    {
+        
+    }
+    
+    private void _OnServerTriggerChanged(object sender, (int index, Enums.TriggerType triggerType) args)
+    {
+        
+    }
+    
+    private void _OnServerTriggerDeleted(object sender, int index)
+    {
+        
     }
 }
