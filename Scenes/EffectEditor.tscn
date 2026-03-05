@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ca8c6xm65ulog" path="res://Scenes/ComponentPreview.tscn" id="2_j3g2g"]
 [ext_resource type="PackedScene" uid="uid://cxpxolg2ox4h4" path="res://Scenes/ComponentPreviewList.tscn" id="3_pggfq"]
 
-[node name="EffectEditor" type="Control" unique_id=1263539688 node_paths=PackedStringArray("_action", "_areaShape", "_triggerSelf", "_addParam", "_params", "_addTriggerBefore", "_triggersBefore", "_addTriggerAfter", "_triggersAfter", "_addEndTrigger", "_endTriggers", "_addServerTrigger", "_serverTriggers", "_areaSizeMin", "_areaSizeMax", "_duration", "_targets", "_addTarget", "_triggeredWithDuration")]
+[node name="EffectEditor" type="Control" unique_id=1263539688 node_paths=PackedStringArray("_action", "_areaShape", "_triggerSelf", "_params", "_triggersBefore", "_triggersAfter", "_endTriggers", "_serverTriggers", "_areaSizeMin", "_areaSizeMax", "_duration", "_targets", "_triggeredWithDuration")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -16,21 +16,15 @@ script = ExtResource("1_07rxj")
 _action = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Action")
 _areaShape = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/AreaShape")
 _triggerSelf = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/TriggerSelf")
-_addParam = NodePath("")
-_params = NodePath("")
-_addTriggerBefore = NodePath("")
-_triggersBefore = NodePath("")
-_addTriggerAfter = NodePath("")
-_triggersAfter = NodePath("")
-_addEndTrigger = NodePath("")
-_endTriggers = NodePath("")
-_addServerTrigger = NodePath("")
-_serverTriggers = NodePath("")
+_params = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters")
+_triggersBefore = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore")
+_triggersAfter = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersAfter")
+_endTriggers = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/EndTriggers")
+_serverTriggers = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/ServerTriggers")
 _areaSizeMin = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize/Min")
 _areaSizeMax = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/AreaSize/Max")
 _duration = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/Duration")
-_targets = NodePath("")
-_addTarget = NodePath("")
+_targets = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Targets")
 _triggeredWithDuration = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/TriggerDuration")
 _componentPreviewScene = ExtResource("2_j3g2g")
 

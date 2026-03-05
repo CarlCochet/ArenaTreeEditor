@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class ComponentPreview : HBoxContainer
 {
@@ -26,48 +27,98 @@ public partial class ComponentPreview : HBoxContainer
     public void SetSpellData(SpellData spellData)
     {
         _optionButtonPreview = new OptionButton();
-        _optionButtonPreview.ItemSelected += newSpellData
-            => SpellDataChanged?.Invoke(this, (Index, GlobalData.Instance.SpellData[(int)newSpellData]));
+        foreach (var entry in GlobalData.Instance.SpellData.OrderBy(kvp => kvp.Key))
+        {
+            _optionButtonPreview.AddItem(entry.Value.Name, entry.Value.Id);
+        }
+        
+        var indexToSelect = _optionButtonPreview.GetItemIndex(spellData.Id);
+        if (indexToSelect >= 0)
+            _optionButtonPreview.Select(indexToSelect);
+        
+        _optionButtonPreview.ItemSelected += selectedIndex =>
+        {
+            var selectedId = _optionButtonPreview.GetItemId((int)selectedIndex);
+            if (GlobalData.Instance.SpellData.TryGetValue(selectedId, out var selectedSpell))
+                SpellDataChanged?.Invoke(this, (Index, selectedSpell));
+        };
         AddChild(_optionButtonPreview);
     }
     
     public void SetLinkData(SphereData sphereData)
     {
         _buttonPreview = new Button();
-        _buttonPreview.Pressed += () 
-            => PreviewPressed?.Invoke(this, Index);
+        _buttonPreview.Text = sphereData.Id.ToString();
+        _buttonPreview.Pressed += () => PreviewPressed?.Invoke(this, Index);
         AddChild(_buttonPreview);
     }
 
     public void SetEffectData(EffectData effectData)
     {
         _buttonPreview = new Button();
-        _buttonPreview.Pressed += () 
-            => PreviewPressed?.Invoke(this, Index);
+        _buttonPreview.Text = ((Enums.ActionType)effectData.ActionId).ToString();
+        _buttonPreview.Pressed += () => PreviewPressed?.Invoke(this, Index);
         AddChild(_buttonPreview);
     }
 
     public void SetFighterCardData(FighterCardData fighterCardData)
     {
         _optionButtonPreview = new OptionButton();
-        _optionButtonPreview.ItemSelected += newFighterCardData
-            => FighterCardDataChanged?.Invoke(this, (Index, GlobalData.Instance.FighterCardsData[(int)newFighterCardData]));
+        foreach (var entry in GlobalData.Instance.FighterCardsData.OrderBy(kvp => kvp.Key))
+        {
+            _optionButtonPreview.AddItem(entry.Value.Name, entry.Value.Id);
+        }
+        
+        var indexToSelect = _optionButtonPreview.GetItemIndex(fighterCardData.Id);
+        if (indexToSelect >= 0)
+            _optionButtonPreview.Select(indexToSelect);
+        
+        _optionButtonPreview.ItemSelected += selectedIndex =>
+        {
+            var selectedId = _optionButtonPreview.GetItemId((int)selectedIndex);
+            if (GlobalData.Instance.FighterCardsData.TryGetValue(selectedId, out var selectedCard))
+                FighterCardDataChanged?.Invoke(this, (Index, selectedCard));
+        };
         AddChild(_optionButtonPreview);
     }
 
     public void SetTriggerData(Enums.TriggerType triggerType)
     {
         _optionButtonPreview = new OptionButton();
-        _optionButtonPreview.ItemSelected += newTriggerType
-            => TriggerDataChanged?.Invoke(this, (Index, (Enums.TriggerType)newTriggerType));
+        foreach (var value in Enum.GetValues<Enums.TargetType>())
+        {
+            _optionButtonPreview.AddItem(value.ToString(), (int)value);
+        }
+        
+        var indexToSelect = _optionButtonPreview.GetItemIndex((int)triggerType);
+        if (indexToSelect >= 0)
+            _optionButtonPreview.Select(indexToSelect);
+        
+        _optionButtonPreview.ItemSelected += selectedIndex => 
+        {
+            var enumValue = _optionButtonPreview.GetItemId((int)selectedIndex);
+            TriggerDataChanged?.Invoke(this, (Index, (Enums.TriggerType)enumValue));
+        };
         AddChild(_optionButtonPreview);
     }
 
     public void SetTargetData(Enums.TargetType targetType)
     {
         _optionButtonPreview = new OptionButton();
-        _optionButtonPreview.ItemSelected += newTargetType
-            => TargetDataChanged?.Invoke(this, (Index, (Enums.TargetType)newTargetType));
+        foreach (var value in Enum.GetValues<Enums.TargetType>())
+        {
+            _optionButtonPreview.AddItem(value.ToString(), (int)value);
+        }
+        
+        var indexToSelect = _optionButtonPreview.GetItemIndex((int)targetType);
+        if (indexToSelect >= 0)
+            _optionButtonPreview.Select(indexToSelect);
+        
+        _optionButtonPreview.ItemSelected += selectedIndex => 
+        {
+            var enumValue = _optionButtonPreview.GetItemId((int)selectedIndex);
+            TargetDataChanged?.Invoke(this, (Index, (Enums.TargetType)enumValue));
+        };
         AddChild(_optionButtonPreview);
     }
 
@@ -75,8 +126,7 @@ public partial class ComponentPreview : HBoxContainer
     {
         _spinBoxPreview = new SpinBox();
         _spinBoxPreview.Value = value;
-        _spinBoxPreview.ValueChanged += newValue
-            => ValueChanged?.Invoke(this, (Index, (int)newValue));
+        _spinBoxPreview.ValueChanged += newValue => ValueChanged?.Invoke(this, (Index, (int)newValue));
         AddChild(_spinBoxPreview);
     }
     

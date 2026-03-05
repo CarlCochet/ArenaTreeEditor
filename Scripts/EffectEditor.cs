@@ -26,7 +26,7 @@ public partial class EffectEditor : Control
     public event EventHandler TriggerAfterAdded;
     public event EventHandler EndTriggerAdded;
     public event EventHandler ServerTriggerAdded;
-    public event EventHandler<(int index, int value)> ParamChanged;
+    public event EventHandler<(int index, double value)> ParamChanged;
     public event EventHandler<(int index, Enums.TargetType target)> TargetChanged;
     public event EventHandler<(int index, Enums.TriggerType trigger)> TriggerBeforeChanged;
     public event EventHandler<(int index, Enums.TriggerType trigger)> TriggerAfterChanged;
@@ -57,14 +57,26 @@ public partial class EffectEditor : Control
         _areaShape.ItemSelected += _OnAreaShapeSelected;
         _triggerSelf.Toggled += _OnTriggerSelfToggled;
         _params.AddPressed += _OnAddParamPressed;
+        _params.ValueChanged += _OnParamChanged;
+        _params.DeletePressed += _OnParamDeleted;
         _triggersBefore.AddPressed += _OnAddTriggerBeforePressed;
+        _triggersBefore.TriggerDataChanged += _OnTriggerBeforeChanged;
+        _triggersBefore.DeletePressed += _OnTriggerBeforeDeleted;
         _triggersAfter.AddPressed += _OnAddTriggerAfterPressed;
+        _triggersAfter.TriggerDataChanged += _OnTriggerAfterChanged;
+        _triggersAfter.DeletePressed += _OnTriggerAfterDeleted;
         _endTriggers.AddPressed += _OnAddEndTriggerPressed;
+        _endTriggers.TriggerDataChanged += _OnEndTriggerChanged;
+        _endTriggers.DeletePressed += _OnEndTriggerDeleted;
         _serverTriggers.AddPressed += _OnAddServerTriggerPressed;
+        _serverTriggers.TriggerDataChanged += _OnServerTriggerChanged;
+        _serverTriggers.DeletePressed += _OnServerTriggerDeleted;
         _areaSizeMin.ValueChanged += _OnAreaSizeMinChanged;
         _areaSizeMax.ValueChanged += _OnAreaSizeMaxChanged;
         _duration.ValueChanged += _OnDurationChanged;
         _targets.AddPressed += _OnAddTargetPressed;
+        _targets.TargetDataChanged += _OnTargetChanged;
+        _targets.DeletePressed += _OnTargetDeleted;
         _triggeredWithDuration.Toggled += _OnTriggeredWithDurationChanged;
     }
 
@@ -80,6 +92,10 @@ public partial class EffectEditor : Control
 
         _params.SetValue(effectData.Params);
         _triggersBefore.SetTriggerData(effectData.TriggersBefore);
+        _triggersAfter.SetTriggerData(effectData.TriggersAfter);
+        _endTriggers.SetTriggerData(effectData.EndTriggers);
+        _serverTriggers.SetTriggerData(effectData.ServerSideTriggers);
+        _targets.SetTargetData(effectData.Targets);
     }
     
     private void _OnActionSelected(long id)
@@ -149,61 +165,61 @@ public partial class EffectEditor : Control
 
     private void _OnTargetChanged(object sender, (int index, Enums.TargetType targetType) args)
     {
-        
+        TargetChanged?.Invoke(this, args);
     }
 
     private void _OnTargetDeleted(object sender, int index)
     {
-        
+        TargetDeleted?.Invoke(this, index);
     }
     
-    private void _OnParamChanged(object sender, (int index, int value) args)
+    private void _OnParamChanged(object sender, (int index, double value) args)
     {
-        
+        ParamChanged?.Invoke(this, args);
     }
     
     private void _OnParamDeleted(object sender, int index)
     {
-        
+        ParamDeleted?.Invoke(this, index);
     }
     
     private void _OnTriggerBeforeChanged(object sender, (int index, Enums.TriggerType triggerType) args)
     {
-        
+        TriggerBeforeChanged?.Invoke(this, args);
     }
     
     private void _OnTriggerBeforeDeleted(object sender, int index)
     {
-        
+        TriggerBeforeDeleted?.Invoke(this, index);
     }
     
     private void _OnTriggerAfterChanged(object sender, (int index, Enums.TriggerType triggerType) args)
     {
-        
+        TriggerAfterChanged?.Invoke(this, args);
     }
     
     private void _OnTriggerAfterDeleted(object sender, int index)
     {
-        
+        TriggerAfterDeleted?.Invoke(this, index);
     }
     
     private void _OnEndTriggerChanged(object sender, (int index, Enums.TriggerType triggerType) args)
     {
-        
+        EndTriggerChanged?.Invoke(this, args);
     }
     
     private void _OnEndTriggerDeleted(object sender, int index)
     {
-        
+        EndTriggerDeleted?.Invoke(this, index);
     }
     
     private void _OnServerTriggerChanged(object sender, (int index, Enums.TriggerType triggerType) args)
     {
-        
+        ServerTriggerChanged?.Invoke(this, args);
     }
     
     private void _OnServerTriggerDeleted(object sender, int index)
     {
-        
+        ServerTriggerDeleted?.Invoke(this, index);
     }
 }
