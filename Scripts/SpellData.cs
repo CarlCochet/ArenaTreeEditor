@@ -21,7 +21,7 @@ public class SpellData
     [JsonPropertyName("castMaxPerTurn")] public int CastMaxPerTurn { get; set; }
     [JsonPropertyName("castMaxPerTarget")] public int CastMaxPerTarget { get; set; }
     [JsonPropertyName("castMaxPerTargetPerTurn")] public int CastMaxPerTargetPerTurn { get; set; }
-    [JsonPropertyName("categoryId")] public int CategoryId { get; set; }
+    [JsonPropertyName("categoryId")] public Enums.Breeds Category { get; set; }
     [JsonPropertyName("scriptId")] public int ScriptId { get; set; }
     [JsonPropertyName("aiTargetId")] public int AiTargetId { get; set; }
     [JsonPropertyName("budget")] public int Budget { get; set; }

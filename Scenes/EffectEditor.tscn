@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_07rxj")
 _action = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Action")
-_areaShape = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/AreaShape")
+_areaShape = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/AreaShape")
 _triggerSelf = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/TriggerSelf")
 _params = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/Parameters")
 _triggersBefore = NodePath("Panel/ScrollContainer/MarginContainer/VBoxContainer/TriggersBefore")
@@ -65,15 +65,17 @@ layout_mode = 2
 text_overrun_behavior = 1
 fit_to_longest_item = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=859122658]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=631389029]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1560054647]
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1563127252]
 layout_mode = 2
 text = "Area Shape"
 
-[node name="AreaShape" type="OptionButton" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1186504343]
+[node name="AreaShape" type="OptionButton" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=811398451]
 layout_mode = 2
+text_overrun_behavior = 1
+fit_to_longest_item = false
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=500974576]
 layout_mode = 2

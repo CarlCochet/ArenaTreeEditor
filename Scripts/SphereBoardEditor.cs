@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using Godot.Collections;
 
 public partial class SphereBoardEditor : MarginContainer
@@ -47,6 +48,29 @@ public partial class SphereBoardEditor : MarginContainer
             _startingSpells[index].ItemSelected += id => _OnStartingSpellSelected(index, id);
         }
     }
+
+    public void Init()
+    {
+        foreach (var key in GlobalData.Instance.SphereBoardData.Keys)
+        {
+            _sphereBoardId.AddItem(key.ToString(), key);
+        }
+        
+        foreach (var value in Enum.GetValues<Enums.Breeds>())
+        {
+            _breed.AddItem(value.ToString(), (int)value);
+        }
+
+        foreach (var startingSpell in _startingSpells)
+        {
+            var breedSpells = GlobalData.Instance.SpellData.Values
+                .Where(s => s.Category == GlobalData.Instance.CurrentBreed);
+            foreach (var spell in breedSpells)
+            {
+                startingSpell.AddItem(spell.Name, spell.Id);
+            }
+        }
+    }
     
     private void _OnNewPressed()
     {
@@ -85,6 +109,17 @@ public partial class SphereBoardEditor : MarginContainer
     
     private void _OnBreedSelected(long id)
     {
+        GlobalData.Instance.CurrentBreed = (Enums.Breeds)id;
+        foreach (var startingSpell in _startingSpells)
+        {
+            startingSpell.Clear();
+            var breedSpells = GlobalData.Instance.SpellData.Values
+                .Where(s => s.Category == GlobalData.Instance.CurrentBreed);
+            foreach (var spell in breedSpells)
+            {
+                startingSpell.AddItem(spell.Name, spell.Id);
+            }
+        }
         BreedSelected?.Invoke(this, (int)id);
     }
     

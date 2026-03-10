@@ -78,12 +78,22 @@ public partial class EffectEditor : Control
         _targets.TargetDataChanged += _OnTargetChanged;
         _targets.DeletePressed += _OnTargetDeleted;
         _triggeredWithDuration.Toggled += _OnTriggeredWithDurationChanged;
+
+        foreach (var value in Enum.GetValues<Enums.ActionType>())
+        {
+            _action.AddItem(value.ToString(), (int)value);
+        }
+        
+        foreach (var value in Enum.GetValues<Enums.AreaShape>())
+        {
+            _areaShape.AddItem(value.ToString(), (int)value);
+        }
     }
 
     public void SetData(EffectData effectData)
     {
         _action.Select(_action.GetItemIndex(effectData.ActionId));
-        _areaShape.Select(_areaShape.GetItemIndex(effectData.AreaShape));
+        _areaShape.Select(_areaShape.GetItemIndex((int)effectData.AreaShape));
         _triggerSelf.SetPressed(effectData.TargetTriggerSelf);
         _areaSizeMin.Value = effectData.AreaSize.Count > 0 ? effectData.AreaSize[0] : 0;
         _areaSizeMax.Value = effectData.AreaSize.Count > 1 ? effectData.AreaSize[1] : 0;

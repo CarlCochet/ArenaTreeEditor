@@ -12,4 +12,13 @@ public class SphereBoardData
     [JsonPropertyName("initialSpellIds")] public List<int> InitialSpellIds { get; set; }
     [JsonPropertyName("startX")] public int StartX { get; set; }
     [JsonPropertyName("startY")] public int StartY { get; set; }
+
+    public SphereBoardData()
+    {
+        SeasonId = 1;
+        BreedId = 1;
+        InitialSpellIds = [ 31, 36, 34 ];
+        StartX = 1;
+        StartY = 1;
+    }
 }

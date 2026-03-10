@@ -107,11 +107,12 @@ text = "Starting Spells:"
 
 [node name="Spell1" type="OptionButton" parent="VBoxContainer" unique_id=1348938068]
 layout_mode = 2
-item_count = 1
-popup/item_0/id = 0
+text_overrun_behavior = 1
 
 [node name="Spell2" type="OptionButton" parent="VBoxContainer" unique_id=716607916]
 layout_mode = 2
+text_overrun_behavior = 1
 
 [node name="Spell3" type="OptionButton" parent="VBoxContainer" unique_id=445912346]
 layout_mode = 2
+text_overrun_behavior = 1

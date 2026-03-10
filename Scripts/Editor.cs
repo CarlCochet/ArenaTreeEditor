@@ -1,9 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
-using FileAccess = Godot.FileAccess;
 
 public partial class Editor : Node2D
 {
@@ -13,22 +9,12 @@ public partial class Editor : Node2D
     [Export] public Camera Camera { get; set; }
     [Export] private FileDialog _openDialog;
     [Export] private FileDialog _saveDialog;
-    
-    private Dictionary<int, SphereBoardData> _sphereBoardData;
-    private Dictionary<int, SphereData> _sphereData;
-    private Dictionary<int, SpellData> _spellData;
-    private Dictionary<int, FighterCardData> _fighterCardsData;
-    
-    private readonly JsonSerializerOptions _jsonOptions = new()
-    {
-        PropertyNameCaseInsensitive = true,
-        WriteIndented = true
-    };
 
     public override void _Ready()
     {
         DisplayServer.WindowSetMinSize(new Vector2I(900, 500));
         EffectEditor.Visible = false;
+        GlobalData.Instance.Load();
 
         SphereBoard.OnSphereSelected += _OnSphereSelected;
         
@@ -38,8 +24,8 @@ public partial class Editor : Node2D
         Inspector.SphereBoardEditor.AddPressed += AddSphere;
         Inspector.SphereBoardEditor.RemovePressed += RemoveSphere;
         Inspector.SphereBoardEditor.LinkPressed += LinkSpheres;
-        
-        GlobalData.Instance.Load();
+
+        Inspector.Init();
     }
 
     private void CreateSphereBoard(object sender, EventArgs e)

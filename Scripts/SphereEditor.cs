@@ -31,6 +31,10 @@ public partial class SphereEditor : ScrollContainer
     
     public override void _Ready()
     {
+        _spells.SetTitle("Spells");
+        _fighterCards.SetTitle("Fighter Cards");
+        _effects.SetTitle("Effects");
+        
         _xpNumber.ValueChanged += _OnXpNumberChanged;
         _type.ItemSelected += _OnTypeSelected;
         _x.ValueChanged += _OnXChanged;
@@ -44,6 +48,16 @@ public partial class SphereEditor : ScrollContainer
         _effects.AddPressed += _OnAddEffectPressed;
         _effects.DeletePressed += _OnEffectDeleted;
         _effects.PreviewPressed += _OnEffectPressed;
+        
+        foreach (var value in Enum.GetValues<Enums.SphereType>())
+        {
+            _type.AddItem(value.ToString(), (int)value);
+        }
+    }
+
+    public void Init()
+    {
+        
     }
     
     public void AddLink(SphereData sphereData)

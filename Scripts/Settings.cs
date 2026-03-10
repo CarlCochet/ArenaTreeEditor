@@ -4,5 +4,5 @@ using System.Text.Json.Serialization;
 
 public class Settings
 {
-    [JsonPropertyName("ArenaPath")] public string ArenaPath { get; set; }
+    [JsonPropertyName("Path")] public string Path { get; set; }
 }

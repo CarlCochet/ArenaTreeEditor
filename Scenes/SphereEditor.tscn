@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cwgl6kp67l8ih" path="res://Scripts/SphereEditor.cs" id="1_wmc22"]
 [ext_resource type="PackedScene" uid="uid://ca8c6xm65ulog" path="res://Scenes/ComponentPreview.tscn" id="2_u6i2g"]
+[ext_resource type="PackedScene" uid="uid://cxpxolg2ox4h4" path="res://Scenes/ComponentPreviewList.tscn" id="3_auj51"]
 
-[node name="SphereEditor" type="ScrollContainer" unique_id=1842821781 node_paths=PackedStringArray("_xpNumber", "_type", "_x", "_y", "_spells", "_addSpell", "_fighterCards", "_addFighterCard", "_links", "_effects", "_addEffect")]
+[node name="SphereEditor" type="ScrollContainer" unique_id=1842821781 node_paths=PackedStringArray("_xpNumber", "_type", "_x", "_y", "_spells", "_fighterCards", "_links", "_effects")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,12 +16,9 @@ _type = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Type")
 _x = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/X")
 _y = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Y")
 _spells = NodePath("MarginContainer/VBoxContainer/Spells")
-_addSpell = NodePath("MarginContainer/VBoxContainer/Spells/AddSpell")
 _fighterCards = NodePath("MarginContainer/VBoxContainer/FighterCards")
-_addFighterCard = NodePath("MarginContainer/VBoxContainer/FighterCards/AddFighterCard")
 _links = NodePath("MarginContainer/VBoxContainer/Links")
 _effects = NodePath("MarginContainer/VBoxContainer/Effects")
-_addEffect = NodePath("MarginContainer/VBoxContainer/Effects/AddEffect")
 _componentPreviewScene = ExtResource("2_u6i2g")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1779890148]
@@ -77,38 +75,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Links"
 
-[node name="Spells" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=987295817]
+[node name="Spells" parent="MarginContainer/VBoxContainer" unique_id=2053861285 instance=ExtResource("3_auj51")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Spells" unique_id=352980152]
-layout_mode = 2
-text = "Spells"
-
-[node name="AddSpell" type="Button" parent="MarginContainer/VBoxContainer/Spells" unique_id=1764203581]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"
-
-[node name="FighterCards" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=914734459]
+[node name="FighterCards" parent="MarginContainer/VBoxContainer" unique_id=1672335919 instance=ExtResource("3_auj51")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/FighterCards" unique_id=1878475527]
+[node name="Effects" parent="MarginContainer/VBoxContainer" unique_id=1283918105 instance=ExtResource("3_auj51")]
 layout_mode = 2
-text = "Fighter Cards"
-
-[node name="AddFighterCard" type="Button" parent="MarginContainer/VBoxContainer/FighterCards" unique_id=336022089]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"
-
-[node name="Effects" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1698214640]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Effects" unique_id=956190465]
-layout_mode = 2
-text = "Effects"
-
-[node name="AddEffect" type="Button" parent="MarginContainer/VBoxContainer/Effects" unique_id=1854008904]
-custom_minimum_size = Vector2(280, 0)
-layout_mode = 2
-text = "+"

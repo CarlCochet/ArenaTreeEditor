@@ -9,7 +9,7 @@ public class EffectData
     [JsonPropertyName("actionId")] public int ActionId { get; set; }
     [JsonPropertyName("parentId")] public int ParentId { get; set; }
     [JsonPropertyName("parentType")] public string ParentType { get; set; } = string.Empty;
-    [JsonPropertyName("areaShape")] public int AreaShape { get; set; }
+    [JsonPropertyName("areaShape")] public Enums.AreaShape AreaShape { get; set; }
     [JsonPropertyName("areaOrderingMethod")] public int AreaOrderingMethod { get; set; }
     [JsonPropertyName("affectedByLocalisation")] public bool AffectedByLocalisation { get; set; }
     [JsonPropertyName("targetTriggerSelf")] public bool TargetTriggerSelf { get; set; }

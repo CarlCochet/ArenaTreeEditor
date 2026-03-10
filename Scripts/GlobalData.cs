@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using FileAccess = Godot.FileAccess;
@@ -12,6 +13,9 @@ public class GlobalData
     public Dictionary<int, SphereData> SphereData;
     public Dictionary<int, SpellData> SpellData;
     public Dictionary<int, FighterCardData> FighterCardsData;
+    
+    public Enums.Breeds CurrentBreed { get; set; }
+    public int CurrentBoardId { get; set; }
     
     public Settings Settings { get; set; }
     
@@ -40,12 +44,25 @@ public class GlobalData
 
     public void Load()
     {
+        LoadSettings();
         LoadFighterCards();
         LoadSpells();
+        LoadData(Settings.Path);
+        
+        CurrentBoardId = SphereBoardData.Count > 0 ? SphereBoardData.Keys.First() : -1;
+        CurrentBreed = CurrentBoardId != -1 ? (Enums.Breeds)SphereBoardData[CurrentBoardId].BreedId : Enums.Breeds.Feca;
     }
     
     public void LoadData(string path)
     {
+        if (path == null)
+        {
+            GD.PrintErr("No path to load data from. Using default.");
+            SphereData = new Dictionary<int, SphereData>();
+            SphereBoardData = new Dictionary<int, SphereBoardData> { { 0, new SphereBoardData() } };
+            return;
+        }
+        
         var spheresPath = Path.Combine(path, "spheres.json");
         var sphereBoardsPath = Path.Combine(path, "sphere_boards.json");
 
@@ -102,8 +119,10 @@ public class GlobalData
     {
         var settingsStr = FileAccess.GetFileAsString("user://settings.json");
         if (settingsStr.Length == 0)
+        {
+            Settings = new Settings();
             return;
-		
+        }
         Settings = JsonSerializer.Deserialize<Settings>(settingsStr);
     }
 
