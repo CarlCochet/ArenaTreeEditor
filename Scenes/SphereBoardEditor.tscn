@@ -51,16 +51,19 @@ alignment = 1
 [node name="Add" type="Button" parent="VBoxContainer/Nodes" unique_id=1119335501]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
+toggle_mode = true
 text = "Add"
 
 [node name="Remove" type="Button" parent="VBoxContainer/Nodes" unique_id=1052465214]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
+toggle_mode = true
 text = "Remove"
 
 [node name="Link" type="Button" parent="VBoxContainer/Nodes" unique_id=1825865779]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
+toggle_mode = true
 text = "Link"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1945460351]

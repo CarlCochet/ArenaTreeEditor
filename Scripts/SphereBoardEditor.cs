@@ -44,8 +44,8 @@ public partial class SphereBoardEditor : MarginContainer
 
         for (var i = 0; i < _startingSpells.Count; i++)
         {
-            var index = i;
-            _startingSpells[index].ItemSelected += id => _OnStartingSpellSelected(index, id);
+            var spellIndex = i;
+            _startingSpells[spellIndex].ItemSelected += itemIndex => _OnStartingSpellSelected(spellIndex, itemIndex);
         }
     }
 
@@ -89,26 +89,36 @@ public partial class SphereBoardEditor : MarginContainer
     
     private void _OnAddPressed()
     {
+        GlobalData.Instance.CurrentMode = Enums.EditorMode.Add;
+        _remove.SetPressedNoSignal(false);
+        _link.SetPressedNoSignal(false);
         AddPressed?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnRemovePressed()
     {
+        GlobalData.Instance.CurrentMode = Enums.EditorMode.Remove;
+        _add.SetPressedNoSignal(false);
+        _link.SetPressedNoSignal(false);
         RemovePressed?.Invoke(this, EventArgs.Empty);
     }
     
     private void _OnLinkPressed()
     {
+        GlobalData.Instance.CurrentMode = Enums.EditorMode.Link;
+        _add.SetPressedNoSignal(false);
+        _remove.SetPressedNoSignal(false);
         LinkPressed?.Invoke(this, EventArgs.Empty);
     }
     
-    private void _OnSphereBoardIdSelected(long id)
+    private void _OnSphereBoardIdSelected(long index)
     {
-        SphereBoardIdSelected?.Invoke(this, (int)id);
+        SphereBoardIdSelected?.Invoke(this, _sphereBoardId.GetItemId((int)index));
     }
     
-    private void _OnBreedSelected(long id)
+    private void _OnBreedSelected(long index)
     {
+        var id = _breed.GetItemId((int)index);
         GlobalData.Instance.CurrentBreed = (Enums.Breeds)id;
         foreach (var startingSpell in _startingSpells)
         {
@@ -120,7 +130,7 @@ public partial class SphereBoardEditor : MarginContainer
                 startingSpell.AddItem(spell.Name, spell.Id);
             }
         }
-        BreedSelected?.Invoke(this, (int)id);
+        BreedSelected?.Invoke(this, id);
     }
     
     private void _OnXChanged()
@@ -133,8 +143,8 @@ public partial class SphereBoardEditor : MarginContainer
         YChanged?.Invoke(this, (int)_y.Value);
     }
 
-    private void _OnStartingSpellSelected(int index, long id)
+    private void _OnStartingSpellSelected(int spellIndex, long itemIndex)
     {
-        StartingSpellSelected?.Invoke(this, (index, (int)id));
+        StartingSpellSelected?.Invoke(this, (spellIndex, _startingSpells[spellIndex].GetItemId((int)itemIndex)));
     }
 }

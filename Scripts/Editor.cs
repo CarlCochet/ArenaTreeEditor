@@ -15,6 +15,7 @@ public partial class Editor : Node2D
         DisplayServer.WindowSetMinSize(new Vector2I(900, 500));
         EffectEditor.Visible = false;
         GlobalData.Instance.Load();
+        GlobalData.Instance.CurrentMode = Enums.EditorMode.Select;
 
         SphereBoard.OnSphereSelected += _OnSphereSelected;
         
@@ -30,7 +31,7 @@ public partial class Editor : Node2D
 
     private void CreateSphereBoard(object sender, EventArgs e)
     {
-        
+        SphereBoard.Reset();
     }
     
     private void AddSphere(object sender, EventArgs e)

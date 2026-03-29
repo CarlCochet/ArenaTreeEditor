@@ -10,15 +10,13 @@ public class SphereBoardData
     [JsonPropertyName("breedId")] public int BreedId { get; set; }
     [JsonPropertyName("fighterCardListId")] public int FighterCardListId { get; set; }
     [JsonPropertyName("initialSpellIds")] public List<int> InitialSpellIds { get; set; }
-    [JsonPropertyName("startX")] public int StartX { get; set; }
-    [JsonPropertyName("startY")] public int StartY { get; set; }
+    [JsonPropertyName("startId")] public int StartId { get; set; }
 
     public SphereBoardData()
     {
         SeasonId = 1;
         BreedId = 1;
         InitialSpellIds = [ 31, 36, 34 ];
-        StartX = 1;
-        StartY = 1;
+        StartId = 1;
     }
 }

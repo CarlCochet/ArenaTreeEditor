@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://c8bno8t8u0a8f"]
 
 [ext_resource type="Script" uid="uid://c5wydhu001i3y" path="res://Scripts/SphereBoard.cs" id="1_g5t1c"]
+[ext_resource type="PackedScene" uid="uid://fo2upd4qes2w" path="res://Scenes/Sphere.tscn" id="2_ckco2"]
 
-[node name="SphereBoard" type="Node2D" unique_id=535833741]
+[node name="SphereBoard" type="Node2D" unique_id=535833741 node_paths=PackedStringArray("_links", "_spheres")]
 script = ExtResource("1_g5t1c")
+_sphereScene = ExtResource("2_ckco2")
+_links = NodePath("Links")
+_spheres = NodePath("Spheres")
+
+[node name="Links" type="Node2D" parent="." unique_id=1166065780]
+
+[node name="Spheres" type="Node2D" parent="." unique_id=171840099]

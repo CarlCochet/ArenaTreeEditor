@@ -3,6 +3,14 @@ using System;
 
 public class Enums
 {
+    public enum EditorMode
+    {
+        Select = 0,
+        Add = 1,
+        Remove = 2,
+        Link = 3
+    }
+    
     public enum AreaShape
     {
         None = 0,

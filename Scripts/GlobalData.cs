@@ -13,9 +13,11 @@ public class GlobalData
     public Dictionary<int, SphereData> SphereData;
     public Dictionary<int, SpellData> SpellData;
     public Dictionary<int, FighterCardData> FighterCardsData;
+    public Dictionary<int, Texture2D> SphereIcons;
     
     public Enums.Breeds CurrentBreed { get; set; }
     public int CurrentBoardId { get; set; }
+    public Enums.EditorMode CurrentMode { get; set; }
     
     public Settings Settings { get; set; }
     
@@ -44,6 +46,7 @@ public class GlobalData
 
     public void Load()
     {
+        LoadAssets();
         LoadSettings();
         LoadFighterCards();
         LoadSpells();
@@ -51,6 +54,54 @@ public class GlobalData
         
         CurrentBoardId = SphereBoardData.Count > 0 ? SphereBoardData.Keys.First() : -1;
         CurrentBreed = CurrentBoardId != -1 ? (Enums.Breeds)SphereBoardData[CurrentBoardId].BreedId : Enums.Breeds.Feca;
+    }
+
+    public void LoadAssets()
+    {
+        const string nodesPath = "res://Assets/Nodes";
+        SphereIcons = new Dictionary<int, Texture2D>();
+        
+        using var dir = DirAccess.Open(nodesPath);
+        if (dir == null)
+        {
+            GD.PrintErr($"Failed to open assets directory: {nodesPath}");
+            return;
+        }
+
+        dir.ListDirBegin();
+        while (true)
+        {
+            var fileName = dir.GetNext();
+            if (string.IsNullOrEmpty(fileName))
+                break;
+
+            if (dir.CurrentIsDir())
+                continue;
+
+            if (!fileName.EndsWith(".tga", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var idText = Path.GetFileNameWithoutExtension(fileName);
+            if (!int.TryParse(idText, out var id))
+            {
+                GD.PrintErr($"Skipping '{fileName}': filename must be an integer.");
+                continue;
+            }
+
+            var resourcePath = $"{nodesPath}/{fileName}";
+            var texture = ResourceLoader.Load<Texture2D>(resourcePath);
+
+            if (texture == null)
+            {
+                GD.PrintErr($"Failed to load texture: {resourcePath}");
+                continue;
+            }
+            
+            SphereIcons.Add(id, texture);
+        }
+
+        dir.ListDirEnd();
+        GD.Print($"Loaded {SphereIcons.Count} sphere icons.");
     }
     
     public void LoadData(string path)
